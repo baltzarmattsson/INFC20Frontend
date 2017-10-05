@@ -1,1 +1,12 @@
-/*styles for home content only*/
+.listing-holder {
+    display: flex;
+    max-width: 960px;
+    
+    flex-flow: row wrap;
+}
+
+.listing-entry {
+    flex: 1 0 25%;
+    border-radius: 0.3em;
+    border: 0.1em solid gray;
+}

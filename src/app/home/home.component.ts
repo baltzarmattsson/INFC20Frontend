@@ -1,9 +1,10 @@
 import {
-  Component,
-  OnInit
+	Component,
+	OnInit
 } from '@angular/core';
 
-import { AppState } from '../app.service';
+import { Model } from "../model/repository.model";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   /**
@@ -11,12 +12,23 @@ import { AppState } from '../app.service';
    * for `document.querySelectorAll(selector)` in our index.html
    * where, in this case, selector is the string 'home'.
    */
-  selector: 'home',
-  styleUrls: [ './home.component.css' ],
-  templateUrl: './home.component.html'
+	selector: 'home',
+	styleUrls: ['./home.component.css'],
+	templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
 
-  public ngOnInit() {
-  }
+	private listings: any[] = [];
+
+	constructor(private model: Model) { }
+	
+	public ngOnInit() {
+		this.model.getListings().subscribe(listings => {
+			(<any>Object).assign(this.listings, listings);
+			console.log(listings);
+			
+		});
+
+
+	}
 }

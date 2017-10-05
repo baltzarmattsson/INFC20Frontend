@@ -1,5 +1,8 @@
-<div>
+<div class="listing-holder">
   
   hej2
 
+  <div *ngFor="let listing of listings" class="listing-entry">
+    {{ listing | json }}
+  </div>
 </div>

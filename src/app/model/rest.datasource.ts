@@ -20,7 +20,7 @@ export const REST_URL = new OpaqueToken("rest_url");
 export class RestDataSource {
 
     constructor(private http: Http,
-        private authHttp: AuthHttp,
+        // private authHttp: AuthHttp,
 
         @Inject(REST_URL)
         private url: string) { }
@@ -30,7 +30,7 @@ export class RestDataSource {
 	// ANIMATION
 	getListings(): Observable<Listing[]> {
         let result: Observable<Listing[]> = this.sendRequest(RequestMethod.Get,
-        `{this.url}/Listings`);
+        `${this.url}/Bid/GetTempListings`, null, false);
 		return result;
 	}
 
