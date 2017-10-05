@@ -10,7 +10,7 @@ import { RestDataSource, REST_URL } from "./rest.datasource";
     providers: [Model, RestDataSource,
         { 
             provide: REST_URL, 
-            useValue: ENV == "development" ? "http://localhost:65007/api" : "azureurl" ,
+            useValue: ENV == "development" ? "http://localhost:52419/api" : "azureurl" ,
         },
 
     ]
