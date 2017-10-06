@@ -6,7 +6,8 @@ import { NgModule,  ApplicationRef} from "@angular/core";
 import { removeNgStyles, createNewHosts, createInputTransfer } from "@angularclass/hmr";
 import { RouterModule, PreloadAllModules} from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MaterialModule } from "@angular/material";
+import { MatInputModule } from "@angular/material";
+import { CdkTableModule } from '@angular/cdk/table';
 
 
 // APP
@@ -46,6 +47,8 @@ const APP_PROVIDERS = [
     ModelModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MatInputModule,
+    CdkTableModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {
