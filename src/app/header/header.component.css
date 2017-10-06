@@ -1,0 +1,35 @@
+.main-div {
+    margin: 0 auto;
+}
+
+.holders-holder {
+    background-color: red;
+    height: 10em;
+    display: flex;
+    flex-flow: nowrap;
+}
+
+.logo-holder {
+    flex: 1 0 25%;
+    background-color: blue;
+}
+
+.search-holder {
+    flex: 1 0 50%;
+    background-color: #00AEFF;
+}
+
+.nav-holder {
+    flex: 1 0 25%;
+    background-color: purple;
+}
+
+.buysellapp-logo {
+    background-image: url(../../assets/img/bidhammer.png);
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+    background-position: center;
+}

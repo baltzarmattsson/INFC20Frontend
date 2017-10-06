@@ -3,7 +3,7 @@
     max-width: 1260px;
     flex-flow: row wrap;
     margin: auto;
-    font-size: 1.4em;
+    font-size: 1.3em;
 }
 
 .listing-entry {
@@ -14,7 +14,7 @@
     position: relative;
     height: 13em;
     background-color: white;
-    box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(0,0,0,.1);
+    box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(0,0,0,.2);
     cursor: pointer;
 }
 
@@ -24,7 +24,7 @@
     right: 0;
     bottom: 3em;
     position: absolute;
-    padding: 1em;
+    padding: 0.5em;
 }
 
 .listing-image {
@@ -32,20 +32,31 @@
     object-fit: contain;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 .info-holder {
     position: absolute;
     bottom: 0;
-    margin-left: 0.5em;
-    display: inline;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0.4em;
+    /* background-color: rgba(0, 70, 255, 0.13); */
+    border-radius: 0 0 0.3em 0.3em;
 }
 
 .title {
+    flex: 1 0 100%;
     font-weight: bold;
-    display: block;
 }
 
 .maxbid {
+    flex: 1 0 50%;
+}
 
+.end-time {
+    flex: 1 0 24%;
+    align-self: right;
 }

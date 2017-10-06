@@ -2,6 +2,8 @@ import { Component,	OnInit } from '@angular/core';
 import { Model } from "../model/repository.model";
 import { Observable } from "rxjs/Observable";
 
+import { DatePipe } from "@angular/common";
+
 @Component({
   /**
    * The selector is what angular internally uses

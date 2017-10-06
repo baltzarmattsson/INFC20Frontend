@@ -9,3 +9,6 @@ a.active {
   background-color: gray;
 }
 
+.header-component-holder {
+  margin-top: 1.5em;
+}
