@@ -1,12 +1,51 @@
 .listing-holder {
     display: flex;
-    max-width: 960px;
-    
+    max-width: 1260px;
     flex-flow: row wrap;
+    margin: auto;
+    font-size: 1.4em;
 }
 
 .listing-entry {
-    flex: 1 0 25%;
+    flex: 1 0 20%;
     border-radius: 0.3em;
-    border: 0.1em solid gray;
+    margin: 1em;
+    padding: 0.5em;
+    position: relative;
+    height: 13em;
+    background-color: white;
+    box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+.image-holder {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 3em;
+    position: absolute;
+    padding: 1em;
+}
+
+.listing-image {
+    border-radius: 0.1em;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+.info-holder {
+    position: absolute;
+    bottom: 0;
+    margin-left: 0.5em;
+    display: inline;
+}
+
+.title {
+    font-weight: bold;
+    display: block;
+}
+
+.maxbid {
+
 }

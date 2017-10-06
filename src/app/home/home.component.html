@@ -1,8 +1,13 @@
 <div class="listing-holder">
-  
-  hej2
-
   <div *ngFor="let listing of listings" class="listing-entry">
-    {{ listing | json }}
+    <div class="image-holder">
+      <a>
+        <img class="listing-image" src="{{listing.picture}}"/>
+      </a>
+    </div>
+    <div class="info-holder">
+      <span class="title">{{listing.title}}</span>
+      <span class="maxbid">{{listing.maxBid}} kr</span>
+    </div>
   </div>
 </div>
