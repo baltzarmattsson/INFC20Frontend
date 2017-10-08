@@ -1,8 +1,10 @@
 import { Component,	OnInit } from '@angular/core';
-import { Model } from "../model/repository.model";
 import { Observable } from "rxjs/Observable";
-
 import { DatePipe } from "@angular/common";
+
+import { Model } from "../model/repository.model";
+import { Listing } from "../model/entities/listing.model";
+import { RedirectorService, Route } from "../redirector.service";
 
 @Component({
   /**
@@ -18,7 +20,8 @@ export class HomeComponent implements OnInit {
 
 	private listings: any[] = [];
 
-	constructor(private model: Model) { }
+	constructor(private model: Model,
+		private redirector: RedirectorService) { }
 	
 	public ngOnInit() {
 		this.model.getListings().subscribe(listings => {
@@ -28,5 +31,11 @@ export class HomeComponent implements OnInit {
 		});
 
 
+	}
+
+	redirectToListing(listing: Listing) {
+		console.log(listing);
+		
+		this.redirector.redirectTo(Route.LISTING_VIEW, listing.Number);
 	}
 }

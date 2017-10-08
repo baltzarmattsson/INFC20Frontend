@@ -1,7 +1,7 @@
 <div class="main-div">
     <div class="holders-holder">
 
-        <div class="logo-holder">
+        <div class="logo-holder clickable" (click)="redirectToHome()">
             <div class="buysellapp-logo"></div>
         </div>
 
@@ -9,7 +9,7 @@
             <mat-form-field class="search-input">
                 <input matInput placeholder="Search">
             </mat-form-field>
-            <button mat-fab color="primary">
+            <button mat-fab color="info">
                 <i class="fa fa-search search-icon"></i>    
             </button>
         </div>
@@ -18,19 +18,19 @@
         <div class="nav-icons">
 
             <!-- My bids -->
-           <div class="nav-icon-holder">
+           <div class="nav-icon-holder clickable" (click)="redirectToMyBids()">
                 <i class="material-icons md-48">attach_money</i>
                 <span>My Bids</span>
            </div>
 
             <!-- Publish listing -->
-           <div class="nav-icon-holder">
+           <div class="nav-icon-holder clickable" (click)="redirectToPublishListing()">
                 <i class="material-icons md-48">add_circle_outline</i>
                 <span>Publish Listing</span>
            </div>
 
             <!-- My Profile -->
-            <div class="nav-icon-holder">
+            <div class="nav-icon-holder clickable" (click)="redirectToProfile()">
                 <i class="material-icons md-48">face</i>
                 <span>My Profile</span>
             </div>

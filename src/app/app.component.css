@@ -1,6 +1,6 @@
 html, body{
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 13px;
   background-color: #F7F7F7;
 }
@@ -11,4 +11,10 @@ a.active {
 
 .header-component-holder {
   margin-top: 1.5em;
+}
+
+.primary-outlet-container {
+  max-width: 1260px;
+  /* border: 1px solid red; */
+  margin: 2em auto 0;
 }

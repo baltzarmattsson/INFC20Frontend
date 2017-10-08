@@ -1,8 +1,6 @@
 .listing-holder {
     display: flex;
-    max-width: 1260px;
     flex-flow: row wrap;
-    margin: auto;
     font-size: 1.3em;
 }
 

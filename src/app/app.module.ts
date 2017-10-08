@@ -12,7 +12,6 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { MatInputModule } from "@angular/material";
 import { MatButtonModule } from '@angular/material';
 
-
 // APP
 import { ENV_PROVIDERS } from "./environment";
 import { ROUTES } from "./app.routes";
@@ -20,17 +19,22 @@ import { ROUTES } from "./app.routes";
 // APP - MODULES
 import { ModelModule } from "./model/model.module";
 
-
 // APP - COMPONENTS
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
 import { DetailedListingComponent } from "./detailed-listing/detailed-listing.component";
 import { HomeComponent } from "./home/home.component";
 import { NoContentComponent } from "./no-content";
+import { ListingFormComponent } from "./listing-form/listing-form.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { MyBidsComponent } from "./my-bids/my-bids.component";
 
+// APP - SERVICES
+import { RedirectorService } from "./redirector.service";
+
+import "../styles/reset.css";
 import "../styles/styles.scss";
 import "../styles/headings.css";
-import "../styles/reset.css";
 import "../styles/material-icons-rules.css";
 
 // Application wide providers
@@ -44,7 +48,10 @@ const APP_PROVIDERS = [
     HeaderComponent,
     DetailedListingComponent,
     HomeComponent,
-    NoContentComponent
+    NoContentComponent,
+    ListingFormComponent,
+    ProfileComponent,
+    MyBidsComponent
   ],
 
   imports: [
@@ -64,7 +71,8 @@ const APP_PROVIDERS = [
 
   providers: [
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    RedirectorService
   ]
 })
 export class AppModule {

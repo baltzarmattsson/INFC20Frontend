@@ -1,0 +1,61 @@
+.detailed-listing {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    font-size: 1.3em;
+}
+
+.detailed-listing > * {
+    margin-bottom: 0.5em;
+    background-color: transparent;
+}
+
+.listing-image-holder {
+    flex: 1 0 50%;
+    height: 500px;
+    width: 500px;
+    background-color: #FFFFFF;
+}
+
+.listing-image {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    overflow: hidden;
+    border-radius: 0.2em;
+    background-position: center;
+}
+
+.add-bid {
+    flex: 1 0 50%;
+    width: 50%;
+}
+
+.title {
+    flex: 1 0 100%;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.description-and-bids-holder {
+    flex: 1 0 100%;
+    display: flex;
+    padding: 1em;
+}
+
+.description-holder {
+    flex: 1 0 50%;
+}
+
+.bids-holder {
+    flex: 1 0 50%;
+    padding: 1em;
+}
+
+.bids-table {
+    font-size: 1.2em;
+}
+
+.bids-table {
+    text-align: center;
+}

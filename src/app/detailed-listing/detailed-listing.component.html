@@ -1,1 +1,51 @@
-<!--component html goes here -->
+<div class="detailed-listing">
+
+    <!-- Title -->
+    <h2 class="title">{{listing.Title}}</h2>
+
+    <!-- Image -->
+    <div class="listing-image-holder">
+        <img class="listing-image" src="{{listing.picture}}" />
+    </div>
+
+    <div class="bids-holder">
+        <!-- Add Bid -->
+        <div class="add-bid">
+            <mat-form-field class="bid-input">
+                <input matInput placeholder="Amount">
+            </mat-form-field>
+
+            <button mat-fab>
+                Bid!
+            </button>
+        </div>
+
+        <!-- Bids -->
+        <h4>Bids</h4>
+        <table class="bids-table">
+            <thead>
+                <tr>
+                    <th>Bidder</th>
+                    <th>Amount</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bid of listing.Bids">
+                    <td>{{bid.Email}}</td>
+                    <td>{{bid.Amount}} kr</td>
+                    <td>{{bid.Time_Stamp | date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Description -->
+    <div class="description-holder">
+        <h4>Description</h4>
+        <span>{{listing.Description}}</span>
+    </div>
+
+
+</div>

@@ -1,14 +1,14 @@
 <div class="listing-holder">
-  <div *ngFor="let listing of listings" class="listing-entry">
+  <div *ngFor="let listing of listings" class="listing-entry" (click)="redirectToListing(listing)">
     <div class="image-holder">
       <a>
         <img class="listing-image" src="{{listing.picture}}"/>
       </a>
     </div>
     <div class="info-holder">
-      <span class="title">{{listing.title}}</span>
-      <span class="maxbid">{{listing.maxBid}} kr</span>
-      <span class="end-time">{{listing.end_time | date }}</span>
+      <span class="title">{{listing.Title}}</span>
+      <span class="maxbid">{{listing.MaxBid}} kr</span>
+      <span class="end-time">{{listing.End_time | date }}</span>
     </div>
   </div>
 </div>
