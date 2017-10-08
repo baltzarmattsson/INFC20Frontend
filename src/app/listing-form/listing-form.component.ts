@@ -31,9 +31,24 @@ export class ListingFormComponent {
     ) {}
 
     ngOnInit() {
+
+        this.form = this.formBuilder.group({
+            "title": ["", Validators.required],
+            "description": ["", Validators.required],
+            "amount": ["", Validators.required ],
+            "image": ["", ]
+        });
+
         this.activeRoute.params.subscribe((params: Params) => {
 
-            
+            this.editing = params["mode"] == "edit";
+            this.listingNumber = params["listingid"];
+
+            if (this.listingNumber != undefined) {
+                this.model.getListings().subscribe((listings: Listing[]) => {
+                    (<any>Object).assign(this.listing, listings.filter(l => l.Number == this.listingNumber)[0]);
+                });
+            }
 
         });
     }

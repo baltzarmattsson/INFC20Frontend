@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from "@angular/router";
 
 import { Model } from "../model/repository.model";
 import { Listing } from "../model/entities/listing.model";
+import { RedirectorService, Route } from "../redirector.service";
 
 @Component({
     moduleId: module.id.toString(),
@@ -16,8 +17,11 @@ export class DetailedListingComponent {
 
     private listing: Listing = new Listing();
 
-    constructor(private model: Model,
-        private activeRoute: ActivatedRoute) {}
+    constructor(
+        private model: Model,
+        private activeRoute: ActivatedRoute,
+        private redirector: RedirectorService
+    ) {}
 
     ngOnInit() {
 
@@ -32,6 +36,12 @@ export class DetailedListingComponent {
             });
         });
 
+    }
+
+    redirectToEditListing() {
+        if (this.listing && this.listing.Number) {
+            this.redirector.redirectTo(Route.LISTING_EDIT, this.listing.Number);
+        }
     }
 
 }

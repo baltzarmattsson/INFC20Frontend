@@ -1,1 +1,43 @@
-listing form
+<div class="form-container">
+    <form [formGroup]="form" (submit)="submitForm()">
+
+        <div class="form-header form-member" [class.editing]="editing">
+            <h2>{{editing ? "Edit" : "Create" }} Listing</h2>
+        </div>
+
+        <!-- Name input -->
+        <mat-form-field class="form-member">
+            <input matInput formControlName="title" id="title" mdInput placeholder="Title" [(ngModel)]="listing.Title" required />
+        </mat-form-field>
+        <!-- <control-messages [control]="form.get('name')" class="form-member"></control-messages> -->
+
+        <!-- Description input -->
+        <mat-form-field class="form-member">
+            <textarea matInput formControlName="description" mdInput placeholder="Description" [(ngModel)]="listing.Description"></textarea>
+        </mat-form-field>
+        <!-- <control-messages [control]="form.get('description')" class="form-member"></control-messages> -->
+
+
+        <!-- Amount input -->
+        <mat-form-field class="form-member">
+            <input matInput formControlName="amount" mdInput placeholder="Amount" [(ngModel)]="listing.Amount" pattern="[0-9]*" />
+        </mat-form-field>
+        <!-- <control-messages [control]="form.get('description')" class="form-member"></control-messages> -->
+
+        <!-- Image Upload -->
+        <div class="form-member">
+            <input class="picture-upload-input" type="file" (change)="fileEvent($event)" *ngIf="editing" />
+
+            <!-- <button *ngIf="editing" type="button" class="button button-info" (click)="uploadFiles()">
+                <i class="fa fa-save }}"></i>
+                <span>Upload map files</span>
+            </button> -->
+        </div>
+
+        <!-- Save button -->
+        <div class="form-member">
+                <button mat-raised-button color="primary">Save</button>
+        </div>
+    </form>
+
+</div>

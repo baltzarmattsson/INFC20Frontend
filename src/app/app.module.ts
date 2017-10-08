@@ -1,6 +1,6 @@
 // ANGULAR
 import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, FormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import { NgModule,  ApplicationRef} from "@angular/core";
 import { removeNgStyles, createNewHosts, createInputTransfer } from "@angularclass/hmr";
@@ -9,8 +9,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CdkTableModule } from '@angular/cdk/table';
 
 // ANGULAR - MATERIAL
-import { MatInputModule } from "@angular/material";
-import { MatButtonModule } from '@angular/material';
+import { MatInputModule, MatButtonModule } from "@angular/material";
 
 // APP
 import { ENV_PROVIDERS } from "./environment";
@@ -55,6 +54,7 @@ const APP_PROVIDERS = [
   ],
 
   imports: [
+    ReactiveFormsModule,
     ModelModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -72,7 +72,12 @@ const APP_PROVIDERS = [
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS,
-    RedirectorService
+    RedirectorService,
+    FormBuilder
+  ],
+
+  exports: [
+    ReactiveFormsModule
   ]
 })
 export class AppModule {
