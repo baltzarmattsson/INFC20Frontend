@@ -4,6 +4,8 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+import "hammerjs";
+
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,

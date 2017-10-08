@@ -6,8 +6,11 @@ import { NgModule,  ApplicationRef} from "@angular/core";
 import { removeNgStyles, createNewHosts, createInputTransfer } from "@angularclass/hmr";
 import { RouterModule, PreloadAllModules} from "@angular/router";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatInputModule } from "@angular/material";
 import { CdkTableModule } from '@angular/cdk/table';
+
+// ANGULAR - MATERIAL
+import { MatInputModule } from "@angular/material";
+import { MatButtonModule } from '@angular/material';
 
 
 // APP
@@ -48,6 +51,7 @@ const APP_PROVIDERS = [
     BrowserModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatButtonModule,
     CdkTableModule,
     FormsModule,
     HttpModule,

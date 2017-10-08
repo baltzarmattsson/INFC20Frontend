@@ -1,9 +1,11 @@
 .main-div {
     margin: 0 auto;
+    box-shadow: 0.1em 0.1em 0.1em rgba(0,0,0,.1);
+    background-color: white;
+    font-size: 1.3em;
 }
 
 .holders-holder {
-    background-color: red;
     height: 10em;
     display: flex;
     flex-flow: nowrap;
@@ -11,21 +13,38 @@
 
 .logo-holder {
     flex: 1 0 25%;
-    background-color: blue;
 }
 
 .search-holder {
+    font-size: 1.3em;
     flex: 1 0 50%;
-    background-color: #00AEFF;
+    align-self: center;
+    text-align: center;
 }
 
-.nav-holder {
+.search-input {
+    width: 50%;
+}
+
+.search-icon {
+    font-size: 1.5em;
+}
+
+.nav-icons {
     flex: 1 0 25%;
-    background-color: purple;
+    display: flex;
+}
+
+.nav-icon-holder {
+    border: 1px solid black;
+    flex: 1 0 33%;
+    /* align-self: center; */
+    /* text-align: center; */
 }
 
 .buysellapp-logo {
     background-image: url(../../assets/img/bidhammer.png);
+    opacity: 0.5;
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
