@@ -35,7 +35,7 @@ export class ListingFormComponent {
         this.form = this.formBuilder.group({
             "title": ["", Validators.required],
             "description": ["", Validators.required],
-            "amount": ["", Validators.required ],
+            "amount": ["", Validators.required],
             "image": ["", ]
         });
 
