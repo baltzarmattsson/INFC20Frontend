@@ -9,10 +9,13 @@ import { AuthService } from "./auth.service";
 })
 export class AuthComponent {
 
+    private email: string = "tempemail@example.com";
+    private password: string = "b"
+
     constructor(private auth: AuthService) {}
 
     ngOnInit() {
-        this.auth.handleAuthentication();
+        // this.auth.handleAuthentication();
     }
 
 }

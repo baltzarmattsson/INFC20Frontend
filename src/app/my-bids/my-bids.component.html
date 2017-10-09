@@ -1,1 +1,29 @@
-<!--component html goes here -->
+<div *ngIf="auth.isAuthenticated()">
+    is auth
+    test
+    <!-- <div *ngFor="let bid of myBids">
+        {{ bid | json }}
+        test
+    </div> -->
+
+    <table class="bids-table">
+        <thead>
+            <tr>
+                <th>Listing</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bid of myBids">
+                <td>{{ bid.Listing_Id }}</td>
+                <td>{{ bid.Amount }}</td>
+                <td>{{ bid.Time_Stamp }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="!auth.isAuthenticated()">
+    not auth
+</div>

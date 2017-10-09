@@ -3,14 +3,14 @@
         <h4 class="info-text">Please login to view this page</h4>
 
         <mat-form-field class="form-control">
-            <input matInput placeholder="Username">
+            <input matInput placeholder="Username" [(ngModel)]="email" >
         </mat-form-field>
         <mat-form-field class="form-control">
-            <input matInput placeholder="Password" type="password">
+            <input matInput placeholder="Password" type="password" [(ngModel)]="password">
         </mat-form-field>
 
 
-        <button mat-raised-button color="primary" (click)="auth.login()">Login</button>
+        <button mat-raised-button color="primary" (click)="auth.login(email, password)">Login</button>
     </div>
 </div>
 

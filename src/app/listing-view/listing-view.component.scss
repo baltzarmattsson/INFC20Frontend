@@ -1,0 +1,95 @@
+.listing-holder {
+    display: flex;
+    flex-flow: row wrap;
+    font-size: 1.3em;
+}
+
+.listing-entry {
+    flex: 1 0 20%;
+    border-radius: 0.3em;
+    margin: 1em;
+    padding: 0.5em;
+    position: relative;
+    height: 13em;
+    background-color: white;
+    box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(0,0,0,.2);
+    cursor: pointer;
+}
+
+.listing-entry.tile {
+    flex: 1 0 100%;
+    
+}
+
+.image-holder {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 3em;
+    position: absolute;
+    padding: 0.5em;
+}
+
+.image-holder.tile {
+}
+
+.listing-image {
+    border-radius: 0.1em;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.listing-image.tile {
+    height: 12em;
+    width: 16em;
+}
+
+.info-holder {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0.4em;
+    /* background-color: rgba(0, 70, 255, 0.13); */
+    border-radius: 0 0 0.3em 0.3em;
+}
+
+.info-holder.tile {
+    left: 17em;
+    top: 1em;
+}
+
+.title {
+    flex: 1 0 100%;
+    font-weight: bold;
+}
+
+.maxbid {
+    flex: 1 0 50%;
+}
+
+.end-time {
+    flex: 1 0 24%;
+    align-self: right;
+}
+
+.edit-listing {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    // background-color: red;
+    width: 15%;
+    background-color: rgba(0,0,0,.2);
+    border-radius: 0 0.3em 0.3em 0;
+}
+
+.edit-listing i {
+    position: absolute;
+    top: 40%;
+    right: 35%;
+}

@@ -46,16 +46,3 @@
 .description-holder {
     flex: 1 0 50%;
 }
-
-.bids-holder {
-    flex: 1 0 50%;
-    padding: 1em;
-}
-
-.bids-table {
-    font-size: 1.2em;
-}
-
-.bids-table {
-    text-align: center;
-}

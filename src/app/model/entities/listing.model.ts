@@ -8,7 +8,8 @@ export class Listing {
         public End_Time?: Date,
         public Picture?: string,
         public MaxBid?: number,
-        public Bids?: Bid[]) {
+        public Bids?: Bid[],
+        public Email?: string) {
 
     }
 }

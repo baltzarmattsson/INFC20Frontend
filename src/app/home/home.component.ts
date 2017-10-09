@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
 	public ngOnInit() {
 		this.model.getListings().subscribe(listings => {
 			(<any>Object).assign(this.listings, listings);
-			console.log(listings);
 			
 		});
 

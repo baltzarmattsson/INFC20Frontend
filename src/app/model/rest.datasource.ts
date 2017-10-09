@@ -13,6 +13,7 @@ import "rxjs/add/operator/delay";
 
 // BUYSELLAPP
 import { Listing } from "./entities/listing.model";
+import { Bid } from "./entities/bid.model";
 
 export const REST_URL = new OpaqueToken("rest_url");
 
@@ -25,14 +26,22 @@ export class RestDataSource {
         @Inject(REST_URL)
         private url: string) { }
 
-
-
-	// ANIMATION
 	getListings(): Observable<Listing[]> {
         let result: Observable<Listing[]> = this.sendRequest(RequestMethod.Get,
         `${this.url}/Bid/GetTempListings`, null, false);
 		return result;
-	}
+    }
+    
+    getBidsByEmail(email: string ): Observable<Bid[]> {
+        
+        let result: Observable<Bid[]> = this.sendRequest(RequestMethod.Get,
+            `${this.url}/Bid/GetTempBids`, null, false);
+            return result;
+    }
+
+    getListingsByEmail(email: string): Observable<Listing[]> {
+        return this.getListings();
+    }
 
 	/**
 	 * 

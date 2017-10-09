@@ -1,0 +1,19 @@
+<div class="listing-holder">
+  <div *ngFor="let listing of listings" class="listing-entry" [class.tile]="showTileView">
+    <div (click)="_onListingClick(listing)">
+      <div class="image-holder" [class.tile]="showTileView">
+        <a>
+              <img class="listing-image" [class.tile]="showTileView" src="{{listing.picture}}"/>
+            </a>
+      </div>
+      <div class="info-holder" [class.tile]="showTileView">
+        <span class="title">{{listing.Title}}</span>
+        <span class="maxbid">{{listing.MaxBid}} kr</span>
+        <span class="end-time">{{listing.End_time | date }}</span>
+      </div>
+    </div>
+    <div *ngIf="showTileView" class="edit-listing clickable" (click)="_onEditListingClick()">
+      <i class="material-icons md-48">edit</i>
+    </div>
+  </div>
+</div>

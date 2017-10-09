@@ -1,6 +1,9 @@
 <div *ngIf="auth.isAuthenticated()">
     is auth
+
     <button (click)="auth.logout()">Temp Logout</button>
+
+    <listing-view [listings]="myListings"></listing-view>
 </div>
 
 <div *ngIf="!auth.isAuthenticated()">

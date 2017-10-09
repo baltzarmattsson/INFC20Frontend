@@ -28,6 +28,7 @@ import { ListingFormComponent } from "./listing-form/listing-form.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { MyBidsComponent } from "./my-bids/my-bids.component";
 import { AuthComponent } from "./auth/auth.component";
+import { ListingViewComponent } from "./listing-view/listing-view.component";
 
 // APP - SERVICES
 import { RedirectorService } from "./redirector.service";
@@ -53,7 +54,8 @@ const APP_PROVIDERS = [
     ListingFormComponent,
     ProfileComponent,
     MyBidsComponent,
-    AuthComponent
+    AuthComponent,
+    ListingViewComponent
   ],
 
   imports: [
