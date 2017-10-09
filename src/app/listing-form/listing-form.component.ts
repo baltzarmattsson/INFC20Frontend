@@ -54,4 +54,38 @@ export class ListingFormComponent {
     }
 
 
+    submitForm() {
+
+    }
+
+    private uploadPicture() {
+
+    }
+
+    private url: any;
+    private pictureFile: any;
+
+    fileEvent(event) {
+        if (event.target.files && event.target.files[0]) {
+
+            if (this.controlPicture(event.target.files[0])) {
+
+                var reader = new FileReader();
+
+                reader.onload = (event: any) => {
+                    this.url = event.target.result;
+                }
+
+                reader.readAsDataURL(event.target.files[0]);
+                this.pictureFile = event.target.files[0];
+            }
+        }
+    }
+
+    private controlPicture(file: any) {
+        console.log(file);
+        
+    }
+
+
 }

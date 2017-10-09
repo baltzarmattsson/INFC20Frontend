@@ -43,6 +43,10 @@ export class RedirectorService {
                 url = "mybids";
                 break;
 
+            case Route.AUTH:
+                url = "auth";
+                break;
+
             default:
                 throw "Unknown Route: " + route;
         }
@@ -60,4 +64,5 @@ export enum Route {
     LISTING_VIEW,
     PROFILE,
     MY_BIDS,
+    AUTH
 }

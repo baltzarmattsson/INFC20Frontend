@@ -1,1 +1,8 @@
-profile
+<div *ngIf="auth.isAuthenticated()">
+    is auth
+    <button (click)="auth.logout()">Temp Logout</button>
+</div>
+
+<div *ngIf="!auth.isAuthenticated()">
+    <auth></auth>
+</div>

@@ -70,6 +70,15 @@ import 'zone.js/dist/zone';
  * Need to import at least one locale-data with intl.
  */
 // import 'intl/locale-data/jsonp/en';
+
+
+// Custom imports
+import "auth0-js/build/auth0";
+
+
+
+
+
 if ('production' === ENV) {
   // Production
 

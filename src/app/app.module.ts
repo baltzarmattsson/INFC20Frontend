@@ -27,9 +27,11 @@ import { NoContentComponent } from "./no-content";
 import { ListingFormComponent } from "./listing-form/listing-form.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { MyBidsComponent } from "./my-bids/my-bids.component";
+import { AuthComponent } from "./auth/auth.component";
 
 // APP - SERVICES
 import { RedirectorService } from "./redirector.service";
+import { AuthService } from "./auth/auth.service";
 
 import "../styles/reset.css";
 import "../styles/styles.scss";
@@ -50,7 +52,8 @@ const APP_PROVIDERS = [
     NoContentComponent,
     ListingFormComponent,
     ProfileComponent,
-    MyBidsComponent
+    MyBidsComponent,
+    AuthComponent
   ],
 
   imports: [
@@ -73,7 +76,8 @@ const APP_PROVIDERS = [
     ENV_PROVIDERS,
     APP_PROVIDERS,
     RedirectorService,
-    FormBuilder
+    FormBuilder,
+    AuthService
   ],
 
   exports: [
