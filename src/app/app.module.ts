@@ -33,6 +33,7 @@ import { ListingViewComponent } from "./listing-view/listing-view.component";
 // APP - SERVICES
 import { RedirectorService } from "./redirector.service";
 import { AuthService } from "./auth/auth.service";
+import { ListingClickNotifierService } from "./listing-view/listing-click-notifier.service";
 
 import "../styles/reset.css";
 import "../styles/styles.scss";
@@ -79,7 +80,8 @@ const APP_PROVIDERS = [
     APP_PROVIDERS,
     RedirectorService,
     FormBuilder,
-    AuthService
+    AuthService,
+    ListingClickNotifierService
   ],
 
   exports: [

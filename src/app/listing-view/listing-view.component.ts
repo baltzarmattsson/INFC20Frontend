@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { ListingClickNotifierService } from "./listing-click-notifier.service";
 import { Listing } from "../model/entities/listing.model";
 
 @Component({
@@ -17,26 +17,17 @@ export class ListingViewComponent {
     @Input()
     showTileView: boolean = true;
 
-    @Input()
-    onListingClick: (listingId: number) => void;
+    constructor(private listingClickNotifier: ListingClickNotifierService) { }
 
-    @Input()
-    onEditListingClick: (listingId: number) => void;
-
-
-    _onListingClick(listingId: number) {
-        console.log("on listing click");
-        
+    onListingClick(listing: Listing) {
         if (this.onListingClick) {
-            this.onListingClick(listingId);
+            this.listingClickNotifier.onListingClick(listing);
         }
     }
 
-    _onEditListingClick(listingId: number) {
-        console.log("on edit click");
-        
+    onEditListingClick(listing: Listing) {
         if (this.onEditListingClick) {
-            this.onEditListingClick(listingId);
+            this.listingClickNotifier.onEditListingClick(listing);
         }
     }
 

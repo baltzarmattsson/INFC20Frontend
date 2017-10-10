@@ -5,6 +5,7 @@ import { DatePipe } from "@angular/common";
 import { Model } from "../model/repository.model";
 import { Listing } from "../model/entities/listing.model";
 import { RedirectorService, Route } from "../redirector.service";
+import { ListingClickNotifierService } from "../listing-view/listing-click-notifier.service";
 
 @Component({
   /**
@@ -21,20 +22,23 @@ export class HomeComponent implements OnInit {
 	private listings: any[] = [];
 
 	constructor(private model: Model,
-		private redirector: RedirectorService) { }
+        private redirector: RedirectorService,
+        private listingClickNotifier: ListingClickNotifierService) { }
 	
 	public ngOnInit() {
+
+        this.listingClickNotifier.listingClick.subscribe((listing: Listing) => {
+            this.onListingClick(listing);
+        });
+
 		this.model.getListings().subscribe(listings => {
 			(<any>Object).assign(this.listings, listings);
-			
 		});
-
-
-	}
-
-	redirectToListing(listing: Listing) {
+    }
+    
+	onListingClick(listing: Listing) {
 		console.log(listing);
-		
-		this.redirector.redirectTo(Route.LISTING_VIEW, listing.Number);
+		if (listing)
+		    this.redirector.redirectTo(Route.LISTING_VIEW, listing.Number);
 	}
 }

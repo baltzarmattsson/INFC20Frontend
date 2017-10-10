@@ -3,6 +3,7 @@ import { AuthService } from "../auth/auth.service";
 import { RedirectorService, Route } from "../redirector.service";
 import { Model } from "../model/repository.model";
 import { Listing } from "../model/entities/listing.model";
+import { ListingClickNotifierService } from "../listing-view/listing-click-notifier.service";
 
 @Component({
     moduleId: module.id.toString(),
@@ -15,9 +16,16 @@ export class ProfileComponent {
 
     constructor(private auth: AuthService,
         private redirector: RedirectorService,
-        private model: Model) { }
+        private model: Model,
+        private listingClickNotifier: ListingClickNotifierService) { }
 
     ngOnInit() {
+
+        this.listingClickNotifier.editListingClick.subscribe((listing: Listing) => {
+            this.onEditListingClick(listing);
+        });
+
+
         this.initListings();
     }
 
@@ -27,6 +35,18 @@ export class ProfileComponent {
             this.model.getListingsByEmail(this.auth.getUserEmail()).subscribe((myListings: Listing[]) => {
                 this.myListings = myListings.filter(listing => listing.Email == this.auth.getUserEmail());
             });
+        }
+    }
+
+    private onListingClick(listing: Listing) {
+        if (listing) {
+            this.redirector.redirectTo(Route.LISTING_VIEW, listing.Number);
+        }
+    }
+
+    private onEditListingClick(listing: Listing) {
+        if (listing) {
+            this.redirector.redirectTo(Route.LISTING_EDIT, listing.Number);
         }
     }
 
