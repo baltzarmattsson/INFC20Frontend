@@ -21,22 +21,21 @@ export const REST_URL = new OpaqueToken("rest_url");
 export class RestDataSource {
 
     constructor(private http: Http,
-        // private authHttp: AuthHttp,
-
+        
         @Inject(REST_URL)
         private url: string) { }
 
-	getListings(): Observable<Listing[]> {
+    getListings(): Observable<Listing[]> {
         let result: Observable<Listing[]> = this.sendRequest(RequestMethod.Get,
-        `${this.url}/Bid/GetTempListings`, null, false);
-		return result;
+            `${this.url}/Bid/GetTempListings`, null, false);
+        return result;
     }
-    
-    getBidsByEmail(email: string ): Observable<Bid[]> {
-        
+
+    getBidsByEmail(email: string): Observable<Bid[]> {
+
         let result: Observable<Bid[]> = this.sendRequest(RequestMethod.Get,
             `${this.url}/Bid/GetTempBids`, null, false);
-            return result;
+        return result;
     }
 
     getListingsByEmail(email: string): Observable<Listing[]> {
@@ -65,52 +64,26 @@ export class RestDataSource {
 
         console.log(`sendRequest @ds: ${url}`, bodyString);
 
-        if (authHttp) {
-            switch (verb) {
-                case RequestMethod.Get:
-                    return this.authHttp.get(url, { headers: headers })
-                        .map(response => (response != null) ? response.json() : null)
-                        .catch((error: any) => Observable.throw(error));
+        switch (verb) {
+            case RequestMethod.Get:
+                return this.http.get(url, { headers: headers })
+                    .map(response => (response != null) ? response.json() : null)
+                    .catch((error: any) => Observable.throw(error));
 
-                case RequestMethod.Put:
-                    return this.authHttp.put(url, bodyString, { headers: headers })
-                        .map(response => (response != null) ? response.json() : null)
-                        .catch((error: any) => Observable.throw(error));
+            case RequestMethod.Put:
+                return this.http.put(url, bodyString, { headers: headers })
+                    .map(response => (response != null) ? response.json() : null)
+                    .catch((error: any) => Observable.throw(error));
 
-                case RequestMethod.Post:
-                    return this.authHttp.post(url, bodyString, { headers: headers })
-                        .map(response => (response != null) ? response.json() : null)
-                        .catch((error: any) => Observable.throw(error));
+            case RequestMethod.Post:
+                return this.http.post(url, bodyString, { headers: headers })
+                    .map(response => (response != null) ? response.json() : null)
+                    .catch((error: any) => Observable.throw(error));
 
-                case RequestMethod.Delete:
-                    return this.authHttp.delete(url, { headers: headers })
-                        .map(response => (response != null) ? response.json() : null)
-                        .catch((error: any) => Observable.throw(error));
-            }
-        }
-        // Use regular http
-        else if (!authHttp) {
-            switch (verb) {
-                case RequestMethod.Get:
-                    return this.http.get(url, { headers: headers })
-                        .map(response => (response != null) ? response.json() : null)
-                        .catch((error: any) => Observable.throw(error));
-
-                case RequestMethod.Put:
-                    return this.http.put(url, bodyString, { headers: headers })
-                        .map(response => (response != null) ? response.json() : null)
-                        .catch((error: any) => Observable.throw(error));
-
-                case RequestMethod.Post:
-                    return this.http.post(url, bodyString, { headers: headers })
-                        .map(response => (response != null) ? response.json() : null)
-                        .catch((error: any) => Observable.throw(error));
-
-                case RequestMethod.Delete:
-                    return this.http.delete(url, { headers: headers })
-                        .map(response => (response != null) ? response.json() : null)
-                        .catch((error: any) => Observable.throw(error));
-            }
+            case RequestMethod.Delete:
+                return this.http.delete(url, { headers: headers })
+                    .map(response => (response != null) ? response.json() : null)
+                    .catch((error: any) => Observable.throw(error));
         }
     }
 }

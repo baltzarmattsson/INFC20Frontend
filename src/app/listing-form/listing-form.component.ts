@@ -82,9 +82,10 @@ export class ListingFormComponent {
         }
     }
 
-    private controlPicture(file: any) {
+    private controlPicture(file: File) {
         console.log(file);
-        
+        // TODO - check file endings, dimensions, size, etc.
+        return true;
     }
 
 

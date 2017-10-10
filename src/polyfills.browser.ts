@@ -73,11 +73,9 @@ import 'zone.js/dist/zone';
 
 
 // Custom imports
-import "auth0-js/build/auth0";
 
 
-
-
+// end of custom imports
 
 if ('production' === ENV) {
   // Production

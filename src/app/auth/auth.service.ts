@@ -6,7 +6,6 @@ import { Router } from "@angular/router";
 
 // THIRD PARTY
 import "rxjs/add/operator/filter";
-import * as auth0 from "auth0-js";
 import { Subject } from "rxjs/Subject";
 import { Observable } from "rxjs/Observable";
 
@@ -18,20 +17,7 @@ import { Model } from "../model/repository.model";
 @Injectable()
 export class AuthService {
 
-	// userProfileSubject = new Subject<any>();
-	// userProfile: any;
 	userModel: User;
-	
-	requestedScopes: string = "openid profile email sub id";
-
-	auth0 = new auth0.WebAuth({
-        clientID: "rC3c1QXUL5DdnvbYAH1rk0VB52qPNleI",
-        domain: "infc20.eu.auth0.com",
-        responseType: "token id_token",
-	    redirectUri: ENV == "development" ? "http://localhost:3000/auth" : "",
-		audience: 'https://infc20.eu.auth0.com/userinfo',
-	    scope: this.requestedScopes,
-	});
 
 	constructor(private redirector: RedirectorService,
 		private router: Router,

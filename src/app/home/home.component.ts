@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit {
     }
     
 	onListingClick(listing: Listing) {
-		console.log(listing);
 		if (listing)
 		    this.redirector.redirectTo(Route.LISTING_VIEW, listing.Number);
 	}
