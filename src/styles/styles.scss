@@ -61,19 +61,19 @@ table {
 	border-radius: 0.3em;
 }
 
-table tbody tr td .button i {
+.default-table tbody tr td .button i {
 	font-size: 1.2em;
 }
 
-table thead {
+.default-table thead {
 	background-color: rgba(1,1,1,.03);
 }
 
-table th {
+.default-table th {
 	font-weight: bold;
 }
 
-table tr:nth-of-type(odd) {
+.default-table tr:nth-of-type(odd) {
 	background-color: rgba(1,1,1,.02);
 }
 

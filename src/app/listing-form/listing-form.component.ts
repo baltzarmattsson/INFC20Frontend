@@ -36,6 +36,7 @@ export class ListingFormComponent {
             "title": ["", Validators.required],
             "description": ["", Validators.required],
             "amount": ["", Validators.required],
+            "enddate": ["", Validators.required],
             "image": ["", ]
         });
 

@@ -12,8 +12,10 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { 
     MatInputModule, 
     MatButtonModule,
-    MatDatepickerModule,
  } from "@angular/material";
+
+// THIRD PARTY
+import { CalendarModule } from "primeng/primeng";
 
 // APP
 import { ENV_PROVIDERS } from "./environment";
@@ -43,6 +45,8 @@ import "../styles/reset.css";
 import "../styles/styles.scss";
 import "../styles/headings.css";
 import "../styles/material-icons-rules.css";
+import "../../node_modules/primeng/resources/themes/omega/theme.css";
+import "../../node_modules/primeng/resources/primeng.min.css";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -71,7 +75,7 @@ const APP_PROVIDERS = [
     MatInputModule,
     MatButtonModule,
     CdkTableModule,
-    MatDatepickerModule,
+    CalendarModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {
