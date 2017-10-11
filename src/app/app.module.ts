@@ -9,7 +9,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CdkTableModule } from '@angular/cdk/table';
 
 // ANGULAR - MATERIAL
-import { MatInputModule, MatButtonModule } from "@angular/material";
+import { 
+    MatInputModule, 
+    MatButtonModule,
+    MatDatepickerModule,
+ } from "@angular/material";
 
 // APP
 import { ENV_PROVIDERS } from "./environment";
@@ -67,6 +71,7 @@ const APP_PROVIDERS = [
     MatInputModule,
     MatButtonModule,
     CdkTableModule,
+    MatDatepickerModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {
