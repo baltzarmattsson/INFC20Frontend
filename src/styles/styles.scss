@@ -5,6 +5,8 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import 'variables';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../../node_modules/primeng/resources/primeng.min.css";
+@import "../../node_modules/primeng/resources/themes/omega/theme.css";
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -53,7 +55,7 @@ nav a {
 	color: rgba(31,137,206,1) !important;
 }
 
-table {
+.default-table {
   width: 100%;
 	table-layout: fixed;
 	box-shadow: 6px 7px 6px 1px rgba(1,1,1,.1), 
