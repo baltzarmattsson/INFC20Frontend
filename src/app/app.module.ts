@@ -9,13 +9,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CdkTableModule } from '@angular/cdk/table';
 
 // ANGULAR - MATERIAL
-import { 
-    MatInputModule, 
-    MatButtonModule,
- } from "@angular/material";
+import { MatInputModule, MatButtonModule } from "@angular/material";
 
 // THIRD PARTY
-import { CalendarModule } from "primeng/primeng";
+import { CalendarModule, MessagesModule } from "primeng/primeng";
 
 // APP
 import { ENV_PROVIDERS } from "./environment";
@@ -40,6 +37,7 @@ import { ListingViewComponent } from "./listing-view/listing-view.component";
 import { RedirectorService } from "./redirector.service";
 import { AuthService } from "./auth/auth.service";
 import { ListingClickNotifierService } from "./listing-view/listing-click-notifier.service";
+import { ResponseMessageService } from "./response-message/response-message.service";
 
 import "../styles/reset.css";
 import "../styles/styles.scss";
@@ -76,6 +74,7 @@ const APP_PROVIDERS = [
     MatButtonModule,
     CdkTableModule,
     CalendarModule,
+    MessagesModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {
@@ -90,7 +89,8 @@ const APP_PROVIDERS = [
     RedirectorService,
     FormBuilder,
     AuthService,
-    ListingClickNotifierService
+    ListingClickNotifierService,
+    ResponseMessageService
   ],
 
   exports: [

@@ -5,6 +5,9 @@
             <h2>{{editing ? "Edit" : "Create" }} Listing</h2>
         </div>
 
+        <!-- Response message -->
+        <p-messages class="form-member" [(value)]="responseMessages"></p-messages>
+
         <!-- Name input -->
         <mat-form-field class="form-member">
             <input matInput formControlName="title" id="title" mdInput placeholder="Title" [(ngModel)]="listing.Title" required />
@@ -19,7 +22,7 @@
 
         <!-- Ending datetime picker -->
         <div class="form-member">
-            <h5>End Time</h5>
+            <h5 class="form-control-header">End Time</h5>
             <p-calendar formControlName="enddate" [(ngModel)]="listing.End_Date" [inline]="true" showTime="true" hourFormat="24" (onSelect)="onDateChange($event)"></p-calendar>
         </div>
 
@@ -31,7 +34,7 @@
 
         <!-- Picture Upload -->
         <div class="form-member">
-            <h5>Picture</h5>
+            <h5 class="form-control-header">Picture</h5>
             <input class="picture-upload-input" type="file" (change)="fileEvent($event)" accept=".png,.gif,.jpeg,.jpg" />
 
             <img [src]="url" class="image-preview">

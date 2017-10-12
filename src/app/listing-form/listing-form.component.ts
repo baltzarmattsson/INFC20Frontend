@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 
+import { Message } from "primeng/primeng";
+
 import { AuthService } from "../auth/auth.service";
 import { RedirectorService } from "../redirector.service";
+import { ResponseMessageService } from "../response-message/response-message.service";
 import { Model } from "../model/repository.model";
 import { Listing } from "../model/entities/listing.model";
 
@@ -16,7 +19,7 @@ export class ListingFormComponent {
 
     form: FormGroup;
 
-    private responseMessages: string[] = [];
+    private responseMessages: Message[] = [];
 
     private listingNumber: any;
     private listing: Listing = new Listing();
@@ -29,7 +32,8 @@ export class ListingFormComponent {
         private activeRoute: ActivatedRoute,
         private formBuilder: FormBuilder,
         private redirector: RedirectorService,
-        private auth: AuthService
+        private auth: AuthService,
+        private responseMessageService: ResponseMessageService
     ) {}
 
     ngOnInit() {
@@ -39,7 +43,7 @@ export class ListingFormComponent {
             "description": ["", Validators.required],
             "amount": ["", Validators.required],
             "enddate": ["", Validators.required],
-            "image": ["", Validators.required]
+            "image": ["", ]
         });
 
         this.activeRoute.params.subscribe((params: Params) => {
@@ -58,8 +62,23 @@ export class ListingFormComponent {
 
 
     submitForm() {
-        if (this.form.valid && this.auth.isAuthenticated()) {
+        if (this.form.valid && this.auth.isAuthenticated() && this.auth.getUserEmail()) {
             console.log("VALID", this.listing);
+
+            this.listing.Email = this.auth.getUserEmail();
+
+            this.responseMessageService.setSuccessMessageWithTimeout(
+                this.responseMessages,
+                "Listing saved!"
+            );
+
+            // this.model.saveListing(this.listing, this.editing).subscribe((listing: Listing) => {
+            //     if (listing) 
+            //         (<any>Object).assign(this.listing, listing);
+            //     (<any>Object).assign(this.originalListing, this.listing);
+
+
+            // }); 
             
         } else {
             console.log("INVALID", this.form);
