@@ -89,5 +89,10 @@ export class ListingFormComponent {
         return true;
     }
 
+    onDateChange(date: Date) {
+        console.log(date);
+        
+    }
+
 
 }
