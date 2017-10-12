@@ -34,14 +34,8 @@ export class Model {
         return result;
     }
 
-    addListing(listing: Listing): Observable<Listing> {
-        let result: Observable<Listing> = this.dataSource.addListing(listing);
-        return result;
-    }
-
-    updateListing(listing: Listing): Observable<Listing> {
-        let result: Observable<Listing> = this.dataSource.updateListing(listing);
-        return result;
+    saveListing(listing: Listing, isExisting: boolean): Observable<Listing> {
+        return this.dataSource.saveListing(listing, isExisting);
     }
 
     deleteListing(listing: number): Observable<Listing> {
@@ -55,14 +49,8 @@ export class Model {
         return result;
     }
 
-    addBid(bid: Bid): Observable<Bid> {
-        let result: Observable<Bid> = this.dataSource.addBid(bid);
-        return result;
-    }
-
-    updateBid(bid: Bid): Observable<Bid> {
-        let result: Observable<Bid> = this.dataSource.updateBid(bid);
-        return result;
+    saveBid(bid: Bid, isExisting: boolean): Observable<Bid> {
+        return this.dataSource.saveBid(bid, isExisting);
     }
 
 
@@ -72,14 +60,9 @@ export class Model {
         return result;
     }
 
-    addTag(tag: Tag): Observable<Tag> {
-        let result: Observable<Tag> = this.dataSource.addTag(tag);
-        return result;
-    }
-
-    updateTag(tag: Tag): Observable<Tag> {
-        let result: Observable<Tag> = this.dataSource.updateTag(tag);
-        return result;
+    
+    saveTag(tag: Tag, isExisting: boolean): Observable<Tag> {
+        return this.dataSource.saveTag(tag, isExisting);
     }
 
     deleteTag(tagId: string): Observable<Tag> {
@@ -92,15 +75,9 @@ export class Model {
         let result: Observable<Review> = this.dataSource.getReview(reviewId);
         return result;
     }
-
-    addReview(review: Review): Observable<Review> {
-        let result: Observable<Review> = this.dataSource.addReview(review);
-        return result;
-    }
-
-    updateReview(review: Review): Observable<Review> {
-        let result: Observable<Review> = this.dataSource.updateReview(review);
-        return result;
+    
+    saveReview(review: Review, isExisting: boolean): Observable<Review> {
+        return this.dataSource.saveReview(review, isExisting);
     }
 
     deleteReview(reviewId: Review): Observable<Review> {

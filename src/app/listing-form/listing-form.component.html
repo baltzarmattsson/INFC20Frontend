@@ -20,7 +20,7 @@
         <!-- Ending datetime picker -->
         <div class="form-member">
             <h5>End Time</h5>
-            <p-calendar formControlName="enddate" [inline]="true" showTime="true" hourFormat="24" (onSelect)="onDateChange($event)"></p-calendar>
+            <p-calendar formControlName="enddate" [(ngModel)]="listing.End_Date" [inline]="true" showTime="true" hourFormat="24" (onSelect)="onDateChange($event)"></p-calendar>
         </div>
 
         <!-- Amount input -->

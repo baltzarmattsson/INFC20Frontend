@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 
+import { AuthService } from "../auth/auth.service";
 import { RedirectorService } from "../redirector.service";
 import { Model } from "../model/repository.model";
 import { Listing } from "../model/entities/listing.model";
@@ -27,7 +28,8 @@ export class ListingFormComponent {
         private model: Model,
         private activeRoute: ActivatedRoute,
         private formBuilder: FormBuilder,
-        private redirector: RedirectorService
+        private redirector: RedirectorService,
+        private auth: AuthService
     ) {}
 
     ngOnInit() {
@@ -37,7 +39,7 @@ export class ListingFormComponent {
             "description": ["", Validators.required],
             "amount": ["", Validators.required],
             "enddate": ["", Validators.required],
-            "image": ["", ]
+            "image": ["", Validators.required]
         });
 
         this.activeRoute.params.subscribe((params: Params) => {
@@ -56,7 +58,13 @@ export class ListingFormComponent {
 
 
     submitForm() {
-
+        if (this.form.valid && this.auth.isAuthenticated()) {
+            console.log("VALID", this.listing);
+            
+        } else {
+            console.log("INVALID", this.form);
+            
+        }
     }
 
     private uploadPicture() {

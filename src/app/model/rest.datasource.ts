@@ -52,14 +52,8 @@ export class RestDataSource {
         return result;
     }
 
-    addListing(listing: Listing): Observable<Listing> {
-        let result: Observable<Listing> = this.sendRequest(RequestMethod.Post, 
-        `${this.url}/Listing`, listing);
-        return result;
-    }
-
-    updateListing(listing: Listing): Observable<Listing> {
-        let result: Observable<Listing> = this.sendRequest(RequestMethod.Put, 
+    saveListing(listing: Listing, isExisting: boolean): Observable<Listing> {
+        let result: Observable<Listing> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post, 
         `${this.url}/Listing`, listing);
         return result;
     }
@@ -85,18 +79,11 @@ export class RestDataSource {
         return result;
     }
 
-    addBid(bid: Bid): Observable<Bid> {
-        let result: Observable<Bid> = this.sendRequest(RequestMethod.Post, 
+    saveBid(bid: Bid, isExisting: boolean): Observable<Bid> {
+        let result: Observable<Bid> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post,
         `${this.url}/Bid`, bid);
         return result;
     }
-
-    updateBid(bid: Bid): Observable<Bid> {
-        let result: Observable<Bid> = this.sendRequest(RequestMethod.Put, 
-        `${this.url}/Bid`, bid);
-        return result;
-    }
-
 
     // TAG
     getTag(tagId: string): Observable<Tag> {
@@ -105,14 +92,8 @@ export class RestDataSource {
         return result;
     }
 
-    addTag(tag: Tag): Observable<Tag> {
-        let result: Observable<Tag> = this.sendRequest(RequestMethod.Post, 
-        `${this.url}/Tag`, tag);
-        return result;
-    }
-
-    updateTag(tag: Tag): Observable<Tag> {
-        let result: Observable<Tag> = this.sendRequest(RequestMethod.Put, 
+    saveTag(tag: Tag, isExisting: boolean): Observable<Tag> {
+        let result: Observable<Tag> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post,
         `${this.url}/Tag`, tag);
         return result;
     }
@@ -130,14 +111,8 @@ export class RestDataSource {
         return result;
     }
 
-    addReview(review: Review): Observable<Review> {
-        let result: Observable<Review> = this.sendRequest(RequestMethod.Post, 
-        `${this.url}/Review`, review);
-        return result;
-    }
-
-    updateReview(review: Review): Observable<Review> {
-        let result: Observable<Review> = this.sendRequest(RequestMethod.Put, 
+    saveReview(review: Review, isExisting: boolean): Observable<Review> {
+        let result: Observable<Review> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post,
         `${this.url}/Review`, review);
         return result;
     }
@@ -169,6 +144,8 @@ export class RestDataSource {
         }
 
         console.log(`sendRequest @ds: ${url}`, bodyString);
+
+        // TODO mindre kod, finns nog en mer generisk
 
         switch (verb) {
             case RequestMethod.Get:
