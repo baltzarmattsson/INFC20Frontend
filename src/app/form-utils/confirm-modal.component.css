@@ -1,0 +1,11 @@
+.mat-dialog-content {
+	font-size: 1.1em;
+	overflow-y: hidden;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.discard-button:hover {
+	background-color: #129fc7;
+	color: white;
+}

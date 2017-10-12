@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CdkTableModule } from '@angular/cdk/table';
 
 // ANGULAR - MATERIAL
-import { MatInputModule, MatButtonModule } from "@angular/material";
+import { MatInputModule, MatButtonModule, MatDialogModule } from "@angular/material";
 
 // THIRD PARTY
 import { CalendarModule, MessagesModule } from "primeng/primeng";
@@ -32,12 +32,15 @@ import { ProfileComponent } from "./profile/profile.component";
 import { MyBidsComponent } from "./my-bids/my-bids.component";
 import { AuthComponent } from "./auth/auth.component";
 import { ListingViewComponent } from "./listing-view/listing-view.component";
+import { ConfirmModalComponent } from "./form-utils/confirm-modal.component";
 
 // APP - SERVICES
 import { RedirectorService } from "./redirector.service";
 import { AuthService } from "./auth/auth.service";
 import { ListingClickNotifierService } from "./listing-view/listing-click-notifier.service";
 import { ResponseMessageService } from "./response-message/response-message.service";
+import { ConfirmModalService } from "./form-utils/confirm-modal.service";
+import { PendingChangesGuard } from "./form-utils/pending-changes.guard";
 
 import "../styles/reset.css";
 import "../styles/styles.scss";
@@ -62,7 +65,8 @@ const APP_PROVIDERS = [
     ProfileComponent,
     MyBidsComponent,
     AuthComponent,
-    ListingViewComponent
+    ListingViewComponent,
+    ConfirmModalComponent
   ],
 
   imports: [
@@ -72,6 +76,7 @@ const APP_PROVIDERS = [
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
     CdkTableModule,
     CalendarModule,
     MessagesModule,
@@ -90,11 +95,17 @@ const APP_PROVIDERS = [
     FormBuilder,
     AuthService,
     ListingClickNotifierService,
-    ResponseMessageService
+    ResponseMessageService,
+    ConfirmModalService,
+    PendingChangesGuard
   ],
 
   exports: [
     ReactiveFormsModule
+  ],
+
+  entryComponents: [
+    ConfirmModalComponent
   ]
 })
 export class AppModule {

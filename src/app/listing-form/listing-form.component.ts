@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, CanDeactive } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 
 import { Message } from "primeng/primeng";
 
+import { ComponentCanDeactivate } from "../form-utils/pending-changes.guard";
 import { AuthService } from "../auth/auth.service";
 import { RedirectorService } from "../redirector.service";
 import { ResponseMessageService } from "../response-message/response-message.service";
@@ -15,7 +16,7 @@ import { Listing } from "../model/entities/listing.model";
     templateUrl: 'listing-form.component.html',
     styleUrls: ['listing-form.component.scss']
 })
-export class ListingFormComponent {
+export class ListingFormComponent implements ComponentCanDeactivate {
 
     form: FormGroup;
 
@@ -60,6 +61,24 @@ export class ListingFormComponent {
         });
     }
 
+    canDeactivate(): boolean {
+        let hasChanges = false;
+
+        let attributesToCheck = [
+            "Title",
+            "Description",
+            "End_Date",
+            "Amount"
+        ];
+
+        attributesToCheck.forEach(att => {
+            if (this.listing[att] != this.originalListing[att]) 
+                hasChanges = true;
+        });
+
+        return !hasChanges;
+    }
+
 
     submitForm() {
         if (this.form.valid && this.auth.isAuthenticated() && this.auth.getUserEmail()) {
@@ -76,8 +95,6 @@ export class ListingFormComponent {
             //     if (listing) 
             //         (<any>Object).assign(this.listing, listing);
             //     (<any>Object).assign(this.originalListing, this.listing);
-
-
             // }); 
             
         } else {
