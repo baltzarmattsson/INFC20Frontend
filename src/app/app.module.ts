@@ -27,20 +27,20 @@ import { HeaderComponent } from "./header/header.component";
 import { DetailedListingComponent } from "./detailed-listing/detailed-listing.component";
 import { HomeComponent } from "./home/home.component";
 import { NoContentComponent } from "./no-content";
-import { ListingFormComponent } from "./listing-form/listing-form.component";
+import { ListingFormComponent } from "./forms/listing-form/listing-form.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { MyBidsComponent } from "./my-bids/my-bids.component";
 import { AuthComponent } from "./auth/auth.component";
 import { ListingViewComponent } from "./listing-view/listing-view.component";
-import { ConfirmModalComponent } from "./form-utils/confirm-modal.component";
+import { ConfirmModalComponent } from "./forms/form-utils/confirm-modal.component";
 
 // APP - SERVICES
 import { RedirectorService } from "./redirector.service";
 import { AuthService } from "./auth/auth.service";
 import { ListingClickNotifierService } from "./listing-view/listing-click-notifier.service";
 import { ResponseMessageService } from "./response-message/response-message.service";
-import { ConfirmModalService } from "./form-utils/confirm-modal.service";
-import { PendingChangesGuard } from "./form-utils/pending-changes.guard";
+import { ConfirmModalService } from "./forms/form-utils/confirm-modal.service";
+import { PendingChangesGuard } from "./forms/form-utils/pending-changes.guard";
 
 import "../styles/reset.css";
 import "../styles/styles.scss";

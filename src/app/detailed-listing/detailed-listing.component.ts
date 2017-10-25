@@ -5,7 +5,7 @@ import { Model } from "../model/repository.model";
 import { Listing } from "../model/entities/listing.model";
 import { RedirectorService, Route } from "../redirector.service";
 
-import { ComponentCanDeactivate } from "../form-utils/pending-changes.guard";
+import { ComponentCanDeactivate } from "../forms/form-utils/pending-changes.guard";
 
 @Component({
     moduleId: module.id.toString(),

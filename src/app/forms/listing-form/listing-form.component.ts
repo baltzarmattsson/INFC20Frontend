@@ -1,15 +1,15 @@
-import { Component, CanDeactive } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 
 import { Message } from "primeng/primeng";
 
 import { ComponentCanDeactivate } from "../form-utils/pending-changes.guard";
-import { AuthService } from "../auth/auth.service";
-import { RedirectorService } from "../redirector.service";
-import { ResponseMessageService } from "../response-message/response-message.service";
-import { Model } from "../model/repository.model";
-import { Listing } from "../model/entities/listing.model";
+import { AuthService } from "../../auth/auth.service";
+import { RedirectorService } from "../../redirector.service";
+import { ResponseMessageService } from "../../response-message/response-message.service";
+import { Model } from "../../model/repository.model";
+import { Listing } from "../../model/entities/listing.model";
 
 @Component({
     moduleId: module.id.toString(),

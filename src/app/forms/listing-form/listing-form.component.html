@@ -20,17 +20,17 @@
         </mat-form-field>
         <!-- <control-messages [control]="form.get('description')" class="form-member"></control-messages> -->
 
-        <!-- Ending datetime picker -->
-        <div class="form-member">
-            <h5 class="form-control-header">End Time</h5>
-            <p-calendar formControlName="enddate" [(ngModel)]="listing.End_Date" [inline]="true" showTime="true" hourFormat="24" (onSelect)="onDateChange($event)"></p-calendar>
-        </div>
-
         <!-- Amount input -->
         <mat-form-field class="form-member">
             <input matInput formControlName="amount" mdInput placeholder="Amount" [(ngModel)]="listing.Amount" pattern="[0-9]*" />
         </mat-form-field>
         <!-- <control-messages [control]="form.get('description')" class="form-member"></control-messages> -->
+
+        <!-- Ending datetime picker -->
+        <div class="form-member">
+            <h5 class="form-control-header">End Time</h5>
+            <p-calendar formControlName="enddate" [(ngModel)]="listing.End_Date" [inline]="true" showTime="true" hourFormat="24" (onSelect)="onDateChange($event)"></p-calendar>
+        </div>
 
         <!-- Picture Upload -->
         <div class="form-member">
