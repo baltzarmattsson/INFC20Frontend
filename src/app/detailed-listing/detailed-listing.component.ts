@@ -21,6 +21,7 @@ export class DetailedListingComponent implements ComponentCanDeactivate {
     private listing: Listing = new Listing();
 
     private valueInBiddingInput: number;
+    private originalValueInBiddingInput: number;
 
     constructor(
         private model: Model,
@@ -39,7 +40,7 @@ export class DetailedListingComponent implements ComponentCanDeactivate {
     }
 
     canDeactivate(): boolean {
-        let hasChanges: boolean = this.valueInBiddingInput != undefined;
+        let hasChanges: boolean = this.valueInBiddingInput != undefined && this.valueInBiddingInput != this.originalValueInBiddingInput;
         return !hasChanges;
     }
 
@@ -60,16 +61,16 @@ export class DetailedListingComponent implements ComponentCanDeactivate {
                 null
             );
 
-            this.model.saveBid(bid, false).subscribe(bid => {
-                // this.updateListing();
+            console.log(bid);
+            this.model.saveBid(bid, false).subscribe(() => {
+                this.updateListing();
+                this.originalValueInBiddingInput = this.valueInBiddingInput;
             });
 
-            console.log(bid);
             
         } else {
             // TODO
             console.log("not valid input");
-            
         }
         
     }

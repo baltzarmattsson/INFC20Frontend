@@ -9,7 +9,7 @@ import { AuthService } from "./auth.service";
 })
 export class AuthComponent {
 
-    private email: string = "tempemail@example.com";
+    private email: string = "test@email.com";
     private password: string = "b"
 
     constructor(private auth: AuthService) {}

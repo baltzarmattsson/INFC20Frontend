@@ -4,7 +4,6 @@ import { Http, Request, RequestMethod, Headers, Response, URLSearchParams, Jsonp
 import { Params } from "@angular/router";
 
 // THIRD PARTY
-import { AuthHttp } from "angular2-jwt";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
@@ -29,14 +28,14 @@ export class RestDataSource {
 
     getListings(): Observable<Listing[]> {
         let result: Observable<Listing[]> = this.sendRequest(RequestMethod.Get,
-            `${this.url}/Listing`, null, false);
+            `${this.url}/Listing`, null);
         return result;
     }
 
     getBidsByEmail(email: string): Observable<Bid[]> {
 
         let result: Observable<Bid[]> = this.sendRequest(RequestMethod.Get,
-            `${this.url}/Bid/GetTempBids`, null, false);
+            `${this.url}/Bid/GetTempBids`, null);
         return result;
     }
 
@@ -47,21 +46,40 @@ export class RestDataSource {
 
     // LISTING
     getListing(listingId: number): Observable<Listing> {
-        let result: Observable<Listing> = this.sendRequest(RequestMethod.Get, 
-        `${this.url}/Listing/${listingId}`);
+        let result: Observable<Listing> = this.sendRequest(RequestMethod.Get,
+            `${this.url}/Listing/${listingId}`);
         return result;
     }
 
     saveListing(listing: Listing, isExisting: boolean): Observable<Listing> {
-        let result: Observable<Listing> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post, 
-        `${this.url}/Listing`, listing);
+        console.log(listing);
+
+        let result: Observable<Listing> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post,
+            `${this.url}/Listing`, listing);
         return result;
     }
 
     deleteListing(listingId: number): Observable<Listing> {
-        let result: Observable<Listing> = this.sendRequest(RequestMethod.Delete, 
-        `${this.url}/Listing`, listingId);
+        let result: Observable<Listing> = this.sendRequest(RequestMethod.Delete,
+            `${this.url}/Listing`, listingId);
         return result;
+    }
+
+    uploadImageForListing(image: File, listing: Listing): Observable<void> {
+        if (image && listing) {
+
+            let formData = new FormData();
+            let headers = new Headers();
+            let options = new RequestOptions({ headers: headers });
+            formData.append("image", image, image.name);
+
+            let url = `${this.url}/Listing/UploadImageForListingId/${listing.Id}`;
+
+            return this.http.post(url, formData, { headers: headers })
+                .map(response => (response != null) ? response.json() : response)
+                .catch((error: any) => Observable.throw(error));
+
+        }
     }
 
     // BID 
@@ -72,57 +90,57 @@ export class RestDataSource {
         let tempHolder: Bid = new Bid();
         tempHolder.Email = email;
         tempHolder.Amount = amount;
-        tempHolder.Listing_Id = listingId;
+        tempHolder.ListingId = listingId;
 
-        let result: Observable<Bid> = this.sendRequest(RequestMethod.Post, 
-        `${this.url}/Bid`, tempHolder);
+        let result: Observable<Bid> = this.sendRequest(RequestMethod.Post,
+            `${this.url}/Bid`, tempHolder);
         return result;
     }
 
     saveBid(bid: Bid, isExisting: boolean): Observable<Bid> {
 
         console.log("save", bid, isExisting);
-        
+
         let result: Observable<Bid> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post,
-            `${this.url}/Bid/Post`, bid);
+            `${this.url}/Bid`, bid);
         return result;
     }
 
     // TAG
     getTag(tagId: string): Observable<Tag> {
-        let result: Observable<Tag> = this.sendRequest(RequestMethod.Get, 
-        `${this.url}/Tag`, tagId);
+        let result: Observable<Tag> = this.sendRequest(RequestMethod.Get,
+            `${this.url}/Tag`, tagId);
         return result;
     }
 
     saveTag(tag: Tag, isExisting: boolean): Observable<Tag> {
         let result: Observable<Tag> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post,
-        `${this.url}/Tag`, tag);
+            `${this.url}/Tag`, tag);
         return result;
     }
 
     deleteTag(tagId: string): Observable<Tag> {
-        let result: Observable<Tag> = this.sendRequest(RequestMethod.Delete, 
-        `${this.url}/Tag`, tagId);
+        let result: Observable<Tag> = this.sendRequest(RequestMethod.Delete,
+            `${this.url}/Tag`, tagId);
         return result;
     }
 
     // REVIEW
     getReview(reviewId: number): Observable<Review> {
-        let result: Observable<Review> = this.sendRequest(RequestMethod.Get, 
-        `${this.url}/Review`, reviewId);
+        let result: Observable<Review> = this.sendRequest(RequestMethod.Get,
+            `${this.url}/Review`, reviewId);
         return result;
     }
 
     saveReview(review: Review, isExisting: boolean): Observable<Review> {
         let result: Observable<Review> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post,
-        `${this.url}/Review`, review);
+            `${this.url}/Review`, review);
         return result;
     }
 
     deleteReview(reviewId: Review): Observable<Review> {
-        let result: Observable<Review> = this.sendRequest(RequestMethod.Delete, 
-        `${this.url}/Review`, reviewId);
+        let result: Observable<Review> = this.sendRequest(RequestMethod.Delete,
+            `${this.url}/Review`, reviewId);
         return result;
     }
 
@@ -137,16 +155,15 @@ export class RestDataSource {
 	 */
     private sendRequest(verb: RequestMethod,
         url: string,
-        body?: Object,
-        authHttp: boolean = true): Observable<any> {
+        body?: Object): Observable<any> {
 
         let bodyString, headers;
         if (body) {
             bodyString = JSON.stringify(body);
-            headers = new Headers({ "Content-Type": "application/json" });
+            headers = new Headers({ "Content-Type": "application/json", "Accept": "application/json" });
         }
 
-        console.log(`sendRequest @ds: ${url}`, bodyString);
+        console.log(`sendRequest @ds: ${url}`, bodyString, RequestMethod[verb]);
 
         // TODO mindre kod, finns nog en mer generisk
 

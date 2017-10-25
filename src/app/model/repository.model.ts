@@ -43,6 +43,11 @@ export class Model {
         return result;
     }
 
+    uploadImageForListing(image: File, listing: Listing): Observable<void> {
+        let result: Observable<void> = this.dataSource.uploadImageForListing(image, listing);
+        return result;
+    }
+
     // BID 
     getBid(email: string, amount: number, listingId: number): Observable<Bid> {
         let result: Observable<Bid> = this.dataSource.getBid(email, amount, listingId);

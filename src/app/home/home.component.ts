@@ -34,7 +34,8 @@ export class HomeComponent implements OnInit {
 		this.model.getListings().subscribe(listings => {
 			console.log(listings);
 			
-			(<any>Object).assign(this.listings, listings);
+            // (<any>Object).assign(this.listings, listings);
+            this.listings = listings;
 		});
     }
     

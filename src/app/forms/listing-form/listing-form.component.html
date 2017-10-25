@@ -29,7 +29,7 @@
         <!-- Ending datetime picker -->
         <div class="form-member">
             <h5 class="form-control-header">End Time</h5>
-            <p-calendar formControlName="enddate" [(ngModel)]="listing.End_Date" [inline]="true" showTime="true" hourFormat="24" (onSelect)="onDateChange($event)"></p-calendar>
+            <p-calendar formControlName="enddate" [(ngModel)]="listing.EndTime" [inline]="true" showTime="true" hourFormat="24" (onSelect)="onDateChange($event)"></p-calendar>
         </div>
 
         <!-- Picture Upload -->
@@ -37,7 +37,7 @@
             <h5 class="form-control-header">Picture</h5>
             <input class="picture-upload-input" type="file" (change)="fileEvent($event)" accept=".png,.gif,.jpeg,.jpg" />
 
-            <img [src]="url" class="image-preview">
+            <img [src]="sanitizer.bypassSecurityTrustResourceUrl(url)" class="image-preview">
         </div>
 
         <!-- Save button -->

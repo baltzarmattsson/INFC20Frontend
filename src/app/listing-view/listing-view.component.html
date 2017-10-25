@@ -3,7 +3,7 @@
         <div (click)="onListingClick(listing)">
             <div class="image-holder" [class.tile]="showTileView">
                 <a>
-              <img class="listing-image" [class.tile]="showTileView" src="{{listing.ImgUrl}}"/>
+              <img class="listing-image" [class.tile]="showTileView" src="{{sanitizedImageUrlForListingId[listing.Id]}}"/>
             </a>
             </div>
             <div class="info-holder" [class.tile]="showTileView">

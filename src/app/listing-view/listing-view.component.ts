@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ListingClickNotifierService } from "./listing-click-notifier.service";
 import { Listing } from "../model/entities/listing.model";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
     moduleId: module.id.toString(),
@@ -10,14 +11,16 @@ import { Listing } from "../model/entities/listing.model";
 })
 export class ListingViewComponent {
 
+    private sanitizedImageUrlForListingId: { [listingId: number]: string } = [];
 
     @Input()
-    listings: Listing[];
+    listings: Listing[] = [];
 
     @Input()
     showTileView: boolean = true;
 
-    constructor(private listingClickNotifier: ListingClickNotifierService) { }
+    constructor(private listingClickNotifier: ListingClickNotifierService,
+        private sanitizer: DomSanitizer) { }
 
     onListingClick(listing: Listing) {
         if (this.onListingClick) {
@@ -30,5 +33,23 @@ export class ListingViewComponent {
             this.listingClickNotifier.onEditListingClick(listing);
         }
     }
+
+    ngOnChanges(changes) {        
+        if (changes && changes.listings && changes.listings.currentValue) {
+
+            let listings = [];
+            (<any>Object).assign(listings, changes.listings.currentValue);
+            console.log("LSSLSL", listings, changes.listings.currentValue);
+            
+
+            listings.forEach(listing => {
+                this.sanitizer.bypassSecurityTrustResourceUrl(listing.ImgUrl);
+                this.sanitizer.bypassSecurityTrustStyle(listing.ImgUrl);
+                this.sanitizer.bypassSecurityTrustUrl(listing.ImgUrl);
+                this.sanitizedImageUrlForListingId[listing.Id] = listing.ImgUrl;
+            });
+        }
+    }
+
 
 }

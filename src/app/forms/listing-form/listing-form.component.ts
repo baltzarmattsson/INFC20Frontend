@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, Params } from "@angular/router";
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 
@@ -6,7 +7,7 @@ import { Message } from "primeng/primeng";
 
 import { ComponentCanDeactivate } from "../form-utils/pending-changes.guard";
 import { AuthService } from "../../auth/auth.service";
-import { RedirectorService } from "../../redirector.service";
+import { RedirectorService, Route } from "../../redirector.service";
 import { ResponseMessageService } from "../../response-message/response-message.service";
 import { Model } from "../../model/repository.model";
 import { Listing } from "../../model/entities/listing.model";
@@ -34,8 +35,9 @@ export class ListingFormComponent implements ComponentCanDeactivate {
         private formBuilder: FormBuilder,
         private redirector: RedirectorService,
         private auth: AuthService,
-        private responseMessageService: ResponseMessageService
-    ) {}
+        private responseMessageService: ResponseMessageService,
+        private sanitizer: DomSanitizer
+    ) { }
 
     ngOnInit() {
 
@@ -44,7 +46,7 @@ export class ListingFormComponent implements ComponentCanDeactivate {
             "description": ["", Validators.required],
             "amount": ["", Validators.required],
             "enddate": ["", Validators.required],
-            "image": ["", ]
+            "image": ["",]
         });
 
         this.activeRoute.params.subscribe((params: Params) => {
@@ -73,7 +75,7 @@ export class ListingFormComponent implements ComponentCanDeactivate {
         ];
 
         attributesToCheck.forEach(att => {
-            if (this.listing[att] != this.originalListing[att]) 
+            if (this.listing[att] != this.originalListing[att])
                 hasChanges = true;
         });
 
@@ -82,30 +84,32 @@ export class ListingFormComponent implements ComponentCanDeactivate {
 
 
     submitForm() {
-        if (this.form.valid && this.auth.isAuthenticated() && this.auth.getUserEmail()) {
+        if (this.form.valid && this.auth.isAuthenticated() && this.auth.getUserEmail() && this.pictureFile) {
             console.log("VALID", this.listing);
 
             this.listing.UserEmail = this.auth.getUserEmail();
 
-            this.responseMessageService.setSuccessMessageWithTimeout(
-                this.responseMessages,
-                "Listing saved!"
-            );
+            if (this.listing.ImgUrl == undefined)
+                this.listing.ImgUrl = "";
 
-            // this.model.saveListing(this.listing, this.editing).subscribe((listing: Listing) => {
-            //     if (listing) 
-            //         (<any>Object).assign(this.listing, listing);
-            //     (<any>Object).assign(this.originalListing, this.listing);
-            // }); 
-            
+            this.model.saveListing(this.listing, this.editing).subscribe((listing: Listing) => {
+                console.log("SAVED", listing);
+                
+                if (listing)
+                    (<any>Object).assign(this.listing, listing);
+                (<any>Object).assign(this.originalListing, this.listing);
+
+                this.model.uploadImageForListing(this.pictureFile, this.listing).subscribe(() => {
+                    this.redirector.redirectTo(Route.LISTING_VIEW, this.listing.Id);
+                });
+
+                this.responseMessageService.setSuccessMessageWithTimeout(this.responseMessages, "Listing saved!");
+            });
+
         } else {
             console.log("INVALID", this.form);
-            
+
         }
-    }
-
-    private uploadPicture() {
-
     }
 
     private url: any;
@@ -136,7 +140,11 @@ export class ListingFormComponent implements ComponentCanDeactivate {
 
     onDateChange(date: Date) {
         console.log(date);
-        
+
+    }
+
+    private getSafeImageUrl() {
+        return this.sanitizer.bypassSecurityTrustUrl(this.listing.ImgUrl);
     }
 
 
