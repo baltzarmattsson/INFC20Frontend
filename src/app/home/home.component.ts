@@ -32,12 +32,14 @@ export class HomeComponent implements OnInit {
         });
 
 		this.model.getListings().subscribe(listings => {
+			console.log(listings);
+			
 			(<any>Object).assign(this.listings, listings);
 		});
     }
     
 	onListingClick(listing: Listing) {
 		if (listing)
-		    this.redirector.redirectTo(Route.LISTING_VIEW, listing.Number);
+		    this.redirector.redirectTo(Route.LISTING_VIEW, listing.Id);
 	}
 }

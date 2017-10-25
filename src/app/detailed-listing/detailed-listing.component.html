@@ -5,7 +5,7 @@
 
     <!-- Image -->
     <div class="listing-image-holder">
-        <img class="listing-image" src="{{listing.picture}}" />
+        <img class="listing-image" src="{{listing.ImgUrl}}" />
     </div>
 
     <div class="bids-holder">
@@ -15,7 +15,7 @@
                 <input matInput placeholder="Amount" [(ngModel)]="valueInBiddingInput">
             </mat-form-field>
 
-            <button mat-fab>
+            <button mat-fab (click)="addBid()">
                 Bid!
             </button>
         </div>
@@ -31,6 +31,11 @@
                 </tr>
             </thead>
             <tbody>
+                <tr *ngIf="!listing.Bids || listing.Bids.length == 0">
+                    <td>No</td>
+                    <td>Bids</td>
+                    <td>Existing</td>
+                </tr>
                 <tr *ngFor="let bid of listing.Bids">
                     <td>{{bid.Email}}</td>
                     <td>{{bid.Amount}} kr</td>

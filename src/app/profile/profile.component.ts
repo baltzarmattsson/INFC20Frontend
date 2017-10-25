@@ -33,20 +33,20 @@ export class ProfileComponent {
 
         if (this.auth.isAuthenticated()) {
             this.model.getListingsByEmail(this.auth.getUserEmail()).subscribe((myListings: Listing[]) => {
-                this.myListings = myListings.filter(listing => listing.Email == this.auth.getUserEmail());
+                this.myListings = myListings.filter(listing => listing.UserEmail == this.auth.getUserEmail());
             });
         }
     }
 
     private onListingClick(listing: Listing) {
         if (listing) {
-            this.redirector.redirectTo(Route.LISTING_VIEW, listing.Number);
+            this.redirector.redirectTo(Route.LISTING_VIEW, listing.Id);
         }
     }
 
     private onEditListingClick(listing: Listing) {
         if (listing) {
-            this.redirector.redirectTo(Route.LISTING_EDIT, listing.Number);
+            this.redirector.redirectTo(Route.LISTING_EDIT, listing.Id);
         }
     }
 

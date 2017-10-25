@@ -29,7 +29,7 @@ export class RestDataSource {
 
     getListings(): Observable<Listing[]> {
         let result: Observable<Listing[]> = this.sendRequest(RequestMethod.Get,
-            `${this.url}/Bid/GetTempListings`, null, false);
+            `${this.url}/Listing`, null, false);
         return result;
     }
 
@@ -80,8 +80,11 @@ export class RestDataSource {
     }
 
     saveBid(bid: Bid, isExisting: boolean): Observable<Bid> {
+
+        console.log("save", bid, isExisting);
+        
         let result: Observable<Bid> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post,
-        `${this.url}/Bid`, bid);
+            `${this.url}/Bid/Post`, bid);
         return result;
     }
 
