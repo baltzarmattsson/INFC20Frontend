@@ -1,15 +1,15 @@
 import { Bid } from "./bid.model";
 
 export class Listing {
-    constructor(public Number?: number,
+    constructor(public Id?: number,
         public Title?: string,
         public Description?: string,
-        public Start_Time?: Date,
-        public End_Time?: Date,
-        public Picture?: string,
+        public Published?: Date,
+        public EndTime?: Date,
+        public ImgUrl?: string,
         public MaxBid?: number,
         public Bids?: Bid[],
-        public Email?: string) {
+        public UserEmail?: string) {
 
     }
 }

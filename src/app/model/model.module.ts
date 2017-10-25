@@ -8,7 +8,7 @@ import { RestDataSource, REST_URL } from "./rest.datasource";
     providers: [Model, RestDataSource,
         { 
             provide: REST_URL, 
-            useValue: "http://localhost:52419/api",
+            useValue: "http://localhost:56769/api",
         },
 
     ]

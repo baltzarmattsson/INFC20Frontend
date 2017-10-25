@@ -3,7 +3,9 @@ import { ActivatedRoute, Params } from "@angular/router";
 
 import { Model } from "../model/repository.model";
 import { Listing } from "../model/entities/listing.model";
+import { Bid } from "../model/entities/bid.model";
 import { RedirectorService, Route } from "../redirector.service";
+import { AuthService } from "../auth/auth.service";
 
 import { ComponentCanDeactivate } from "../forms/form-utils/pending-changes.guard";
 
@@ -23,18 +25,17 @@ export class DetailedListingComponent implements ComponentCanDeactivate {
     constructor(
         private model: Model,
         private activeRoute: ActivatedRoute,
-        private redirector: RedirectorService
+        private redirector: RedirectorService,
+        private auth: AuthService
     ) {}
 
     ngOnInit() {
 
         this.activeRoute.params.subscribe((params: Params) => {
             this.listingId = params["listingid"];
-            this.model.getListings().subscribe((listings: Listing[]) => {
-                this.listing = listings.filter(l => l.Number == this.listingId)[0];
-            });
+            this.updateListing();
+            
         });
-
     }
 
     canDeactivate(): boolean {
@@ -43,8 +44,42 @@ export class DetailedListingComponent implements ComponentCanDeactivate {
     }
 
     redirectToEditListing() {
-        if (this.listing && this.listing.Number) {
-            this.redirector.redirectTo(Route.LISTING_EDIT, this.listing.Number);
+        if (this.listing && this.listing.Id) {
+            this.redirector.redirectTo(Route.LISTING_EDIT, this.listing.Id);
+        }
+    }
+
+    addBid() {
+        let convertedAmount = Number(this.valueInBiddingInput);
+
+        if (convertedAmount) {
+            let bid = new Bid(
+                this.auth.getUserEmail(), 
+                this.listingId,
+                this.valueInBiddingInput,
+                null
+            );
+
+            this.model.saveBid(bid, false).subscribe(bid => {
+                // this.updateListing();
+            });
+
+            console.log(bid);
+            
+        } else {
+            // TODO
+            console.log("not valid input");
+            
+        }
+        
+    }
+
+    private updateListing() {
+        if (this.listingId != undefined) {
+            this.model.getListing(this.listingId).subscribe((listing: Listing) => {
+                console.log(listing);
+                (<any>Object).assign(this.listing, listing);
+            });
         }
     }
 

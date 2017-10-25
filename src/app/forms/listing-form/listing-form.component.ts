@@ -22,7 +22,7 @@ export class ListingFormComponent implements ComponentCanDeactivate {
 
     private responseMessages: Message[] = [];
 
-    private listingNumber: any;
+    private listingId: any;
     private listing: Listing = new Listing();
     private originalListing: Listing = new Listing();
 
@@ -50,11 +50,12 @@ export class ListingFormComponent implements ComponentCanDeactivate {
         this.activeRoute.params.subscribe((params: Params) => {
 
             this.editing = params["mode"] == "edit";
-            this.listingNumber = params["listingid"];
+            this.listingId = params["listingid"];
 
-            if (this.listingNumber != undefined) {
-                this.model.getListings().subscribe((listings: Listing[]) => {
-                    (<any>Object).assign(this.listing, listings.filter(l => l.Number == this.listingNumber)[0]);
+            if (this.listingId != undefined) {
+                this.model.getListing(this.listingId).subscribe((listing: Listing) => {
+                    console.log(listing);
+                    (<any>Object).assign(this.listing, listing);
                 });
             }
 
@@ -84,7 +85,7 @@ export class ListingFormComponent implements ComponentCanDeactivate {
         if (this.form.valid && this.auth.isAuthenticated() && this.auth.getUserEmail()) {
             console.log("VALID", this.listing);
 
-            this.listing.Email = this.auth.getUserEmail();
+            this.listing.UserEmail = this.auth.getUserEmail();
 
             this.responseMessageService.setSuccessMessageWithTimeout(
                 this.responseMessages,
