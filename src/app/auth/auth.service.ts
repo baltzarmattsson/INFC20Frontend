@@ -24,7 +24,8 @@ export class AuthService {
 		private model: Model) {}
 
 	public login(email: string, password: string) {
-		this.setSession({ email: email, password: password });
+        this.setSession({ email: email, password: password });
+        this.redirector.redirectTo(Route.PROFILE);
 	}
 
 
@@ -43,7 +44,7 @@ export class AuthService {
 		localStorage.removeItem("logged_in_password");
 		localStorage.removeItem("expires_at");
 
-	    this.redirector.redirectTo(Route.AUTH);
+	    this.redirector.redirectTo(Route.PROFILE);
 	}
 
 	public isAuthenticated(): boolean {

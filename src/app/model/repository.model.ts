@@ -96,4 +96,17 @@ export class Model {
         return this.dataSource.signUpUser(user);
     }
 
+    getUser(email: string): Observable<User> {
+        return this.dataSource.getUser(email);
+    }    
+    
+    saveUser(user: User, isExisting: boolean): Observable<User> {
+        return this.dataSource.saveUser(user, isExisting);
+    }
+
+    isUserLoginOK(email: string, password: string): Observable<boolean> {
+        return this.dataSource.isUserLoginOK(email, password);
+    }
+
+
 }

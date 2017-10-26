@@ -36,6 +36,7 @@ import { ListingViewComponent } from "./listing-view/listing-view.component";
 import { ConfirmModalComponent } from "./forms/form-utils/confirm-modal.component";
 
 // APP - SERVICES
+import { HttpErrorHandlerService } from "./model/http-error-handler.service";
 import { RedirectorService } from "./redirector.service";
 import { AuthService } from "./auth/auth.service";
 import { ListingClickNotifierService } from "./listing-view/listing-click-notifier.service";
@@ -93,6 +94,7 @@ const APP_PROVIDERS = [
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS,
+    HttpErrorHandlerService,
     RedirectorService,
     FormBuilder,
     AuthService,

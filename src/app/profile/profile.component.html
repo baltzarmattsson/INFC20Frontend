@@ -1,11 +1,44 @@
 <div *ngIf="auth.isAuthenticated()">
-    is auth
 
-    <button (click)="auth.logout()">Temp Logout</button>
+    <form [formGroup]="form" class="form">
+        
+        <!-- Response message -->
+        <p-messages class="form-member" [(value)]="responseMessages"></p-messages>
 
-    <listing-view 
-        [listings]="myListings"
-        [showTileView]="true">
+        <!-- Email input -->
+        <mat-form-field class="form-member">
+            <input matInput formControlName="email" id="email" mdInput placeholder="Email" [(ngModel)]="user.Email" required />
+        </mat-form-field>
+        
+        <!-- FirstName input -->
+        <mat-form-field class="form-member">
+            <input matInput formControlName="firstname" id="firstname" mdInput placeholder="First Name" [(ngModel)]="user.FirstName" required />
+        </mat-form-field>
+        
+        <!-- LastName input -->
+        <mat-form-field class="form-member">
+            <input matInput formControlName="lastname" id="lastname" mdInput placeholder="Last Name" [(ngModel)]="user.LastName" required />
+        </mat-form-field>
+        
+        <!-- Address input -->
+        <mat-form-field class="form-member">
+            <input matInput formControlName="address" id="address" mdInput placeholder="Address" [(ngModel)]="user.Address" />
+        </mat-form-field>
+        
+        <!-- Password input -->
+        <mat-form-field class="form-member">
+            <input matInput formControlName="password" id="password" mdInput placeholder="Password" [(ngModel)]="user.Password" type="password" required />
+        </mat-form-field>
+
+        <!-- Save button -->
+        <div class="form-member">
+            <button mat-raised-button color="primary" (click)="submitForm()">Save</button>
+            <button mat-raised-button color="secondary" (click)="auth.logout()">Logout</button>
+        </div>
+
+    </form>
+
+    <listing-view [listings]="myListings" [showTileView]="true">
     </listing-view>
 </div>
 

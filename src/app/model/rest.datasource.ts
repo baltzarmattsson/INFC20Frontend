@@ -11,6 +11,7 @@ import "rxjs/add/observable/throw";
 import "rxjs/add/operator/delay";
 
 // BUYSELLAPP
+import { HttpErrorHandlerService } from "./http-error-handler.service";
 import { Listing } from "./entities/listing.model";
 import { Bid } from "./entities/bid.model";
 import { Review } from "./entities/review.model";
@@ -23,6 +24,7 @@ export const REST_URL = new OpaqueToken("rest_url");
 export class RestDataSource {
 
     constructor(private http: Http,
+        private errorHandler: HttpErrorHandlerService,
 
         @Inject(REST_URL)
         private url: string) { }
@@ -154,6 +156,23 @@ export class RestDataSource {
         return result;
     }
 
+    getUser(email: string): Observable<User> {
+        let result: Observable<User> = this.sendRequest(RequestMethod.Post,
+            `${this.url}/User/GetUserByEmail`, email);
+        return result;
+    }
+    saveUser(user: User, isExisting: boolean): Observable<User> {
+        let result: Observable<User> = this.sendRequest(isExisting ? RequestMethod.Put : RequestMethod.Post,
+            `${this.url}/User`, user);
+        return result;
+    }
+
+    isUserLoginOK(email: string, password: string): Observable<boolean> {
+        let result: Observable<boolean> = this.sendRequest(RequestMethod.Post,
+            `${this.url}/User/IsUserLoginOK/${password}`, email);
+        return result;
+    }
+
 	/**
 	 * 
 	 * @param verb The HTTP verb, Get, Put, Post, Delete
@@ -181,22 +200,22 @@ export class RestDataSource {
             case RequestMethod.Get:
                 return this.http.get(url, { headers: headers })
                     .map(response => (response != null) ? response.json() : null)
-                    .catch((error: any) => Observable.throw(error));
+                    .catch((error: any) => this.errorHandler.handleError(error));
 
             case RequestMethod.Put:
                 return this.http.put(url, bodyString, { headers: headers })
                     .map(response => (response != null) ? response.json() : null)
-                    .catch((error: any) => Observable.throw(error));
+                    .catch((error: any) => this.errorHandler.handleError(error));
 
             case RequestMethod.Post:
                 return this.http.post(url, bodyString, { headers: headers })
                     .map(response => (response != null) ? response.json() : null)
-                    .catch((error: any) => Observable.throw(error));
+                    .catch((error: any) => this.errorHandler.handleError(error));
 
             case RequestMethod.Delete:
                 return this.http.delete(url, { headers: headers })
                     .map(response => (response != null) ? response.json() : null)
-                    .catch((error: any) => Observable.throw(error));
+                    .catch((error: any) => this.errorHandler.handleError(error));
         }
     }
 }
