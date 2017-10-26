@@ -7,6 +7,7 @@ import { Listing } from "./entities/listing.model";
 import { Bid } from "./entities/bid.model";
 import { Review } from "./entities/review.model";
 import { Tag } from "./entities/tag.model";
+import { User } from "./entities/user.model";
 import { RestDataSource } from "./rest.datasource";
 
 @Injectable()
@@ -88,6 +89,11 @@ export class Model {
     deleteReview(reviewId: Review): Observable<Review> {
         let result: Observable<Review> = this.dataSource.deleteReview(reviewId);
         return result;
+    }
+
+    // USER
+    signUpUser(user: User): Observable<void> {
+        return this.dataSource.signUpUser(user);
     }
 
 }

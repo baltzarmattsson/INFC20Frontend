@@ -15,6 +15,7 @@ import { Listing } from "./entities/listing.model";
 import { Bid } from "./entities/bid.model";
 import { Review } from "./entities/review.model";
 import { Tag } from "./entities/tag.model";
+import { User } from "./entities/user.model";
 
 export const REST_URL = new OpaqueToken("rest_url");
 
@@ -40,7 +41,7 @@ export class RestDataSource {
     // }
 
     getListingsByEmail(email: string): Observable<Listing[]> {
-        let result: Observable<Listing[]> = this.sendRequest(RequestMethod.Post, 
+        let result: Observable<Listing[]> = this.sendRequest(RequestMethod.Post,
             `${this.url}/Listing/GetListingsByEmail`, email);
 
         return result;
@@ -144,6 +145,12 @@ export class RestDataSource {
     deleteReview(reviewId: Review): Observable<Review> {
         let result: Observable<Review> = this.sendRequest(RequestMethod.Delete,
             `${this.url}/Review`, reviewId);
+        return result;
+    }
+    // USER
+    signUpUser(user: User): Observable<void> {
+        let result: Observable<void> = this.sendRequest(RequestMethod.Post,
+            `${this.url}/User`, user);
         return result;
     }
 

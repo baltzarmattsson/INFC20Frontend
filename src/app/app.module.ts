@@ -31,6 +31,7 @@ import { ListingFormComponent } from "./forms/listing-form/listing-form.componen
 import { ProfileComponent } from "./profile/profile.component";
 import { MyBidsComponent } from "./my-bids/my-bids.component";
 import { AuthComponent } from "./auth/auth.component";
+import { SignUpComponent } from "./forms/sign-up/sign-up.component";
 import { ListingViewComponent } from "./listing-view/listing-view.component";
 import { ConfirmModalComponent } from "./forms/form-utils/confirm-modal.component";
 
@@ -65,6 +66,7 @@ const APP_PROVIDERS = [
     ProfileComponent,
     MyBidsComponent,
     AuthComponent,
+    SignUpComponent,
     ListingViewComponent,
     ConfirmModalComponent
   ],

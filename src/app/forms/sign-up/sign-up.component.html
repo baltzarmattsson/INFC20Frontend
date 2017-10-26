@@ -1,0 +1,30 @@
+<form [formGroup]="form" class="signup-controls-holder">
+    <h4 class="info-text">Or sign up to use the service</h4>
+
+    <!-- Username -->
+    <mat-form-field class="form-control">
+        <input matInput formControlName="username" placeholder="Email" [(ngModel)]="user.Email">
+    </mat-form-field>
+
+    <!-- First Name -->
+    <mat-form-field class="form-control">
+        <input matInput formControlName="firstname" placeholder="First Name" [(ngModel)]="user.FirstName">
+    </mat-form-field>
+
+    <!-- Last Name -->
+    <mat-form-field class="form-control">
+        <input matInput formControlName="lastname" placeholder="Last Name" [(ngModel)]="user.LastName">
+    </mat-form-field>
+
+    <!-- Address -->
+    <mat-form-field class="form-control">
+        <input matInput formControlName="streetaddress" placeholder="Street Address" [(ngModel)]="user.Address">
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field class="form-control">
+        <input matInput formControlName="password" placeholder="Password" type="password" [(ngModel)]="user.Password">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="submitForm()">Sign up and login</button>
+</form>

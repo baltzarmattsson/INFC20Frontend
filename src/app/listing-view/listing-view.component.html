@@ -9,7 +9,7 @@
             <div class="info-holder" [class.tile]="showTileView">
                 <span class="title">{{listing.Title}}</span>
                 <span class="maxbid">{{listing.MaxBid}} kr</span>
-                <span class="end-time">{{listing.End_time | date }}</span>
+                <span class="end-time">{{listing.EndTime | date }}</span>
             </div>
         </div>
         <div *ngIf="showTileView" class="edit-listing clickable" (click)="onEditListingClick(listing)">

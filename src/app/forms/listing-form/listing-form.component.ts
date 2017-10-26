@@ -65,6 +65,7 @@ export class ListingFormComponent implements ComponentCanDeactivate {
                     this.disableFormFields();
 
                     (<any>Object).assign(this.listing, listing);
+                    (<any>Object).assign(this.originalListing, this.listing);
                 });
             }
 
@@ -77,12 +78,14 @@ export class ListingFormComponent implements ComponentCanDeactivate {
         let attributesToCheck = [
             "Title",
             "Description",
-            "End_Date"
+            "EndTime"
         ];
 
         attributesToCheck.forEach(att => {
-            if (this.listing[att] != this.originalListing[att])
+            if (this.listing[att] != this.originalListing[att]) {
+                console.log("changes", att);
                 hasChanges = true;
+            }
         });
 
         return !hasChanges;
