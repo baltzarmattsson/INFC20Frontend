@@ -29,6 +29,9 @@ export class ListingFormComponent implements ComponentCanDeactivate {
 
     private editing: boolean = false;
 
+    private imageUrl: string;
+    private pictureFile: any;
+
     constructor(
         private model: Model,
         private activeRoute: ActivatedRoute,
@@ -44,7 +47,6 @@ export class ListingFormComponent implements ComponentCanDeactivate {
         this.form = this.formBuilder.group({
             "title": ["", Validators.required],
             "description": ["", Validators.required],
-            "amount": ["", Validators.required],
             "enddate": ["", Validators.required],
             "image": ["",]
         });
@@ -56,7 +58,12 @@ export class ListingFormComponent implements ComponentCanDeactivate {
 
             if (this.listingId != undefined) {
                 this.model.getListing(this.listingId).subscribe((listing: Listing) => {
-                    console.log(listing);
+                    if (listing && listing.EndTime)
+                        listing.EndTime = new Date(listing.EndTime.toString());
+
+                    this.imageUrl = this.listing.ImgUrl;
+                    this.disableFormFields();
+
                     (<any>Object).assign(this.listing, listing);
                 });
             }
@@ -70,8 +77,7 @@ export class ListingFormComponent implements ComponentCanDeactivate {
         let attributesToCheck = [
             "Title",
             "Description",
-            "End_Date",
-            "Amount"
+            "End_Date"
         ];
 
         attributesToCheck.forEach(att => {
@@ -84,7 +90,7 @@ export class ListingFormComponent implements ComponentCanDeactivate {
 
 
     submitForm() {
-        if (this.form.valid && this.auth.isAuthenticated() && this.auth.getUserEmail() && this.pictureFile) {
+        if (this.form.valid && this.auth.isAuthenticated() && this.auth.getUserEmail() && (this.pictureFile || this.editing)) {
             console.log("VALID", this.listing);
 
             this.listing.UserEmail = this.auth.getUserEmail();
@@ -93,17 +99,21 @@ export class ListingFormComponent implements ComponentCanDeactivate {
                 this.listing.ImgUrl = "";
 
             this.model.saveListing(this.listing, this.editing).subscribe((listing: Listing) => {
-                console.log("SAVED", listing);
-                
+                listing.EndTime = new Date(listing.EndTime.toString());
+
                 if (listing)
                     (<any>Object).assign(this.listing, listing);
                 (<any>Object).assign(this.originalListing, this.listing);
 
-                this.model.uploadImageForListing(this.pictureFile, this.listing).subscribe(() => {
-                    this.redirector.redirectTo(Route.LISTING_VIEW, this.listing.Id);
-                });
+                // If it's a new listing, upload the image
+                if (this.editing == false) {
+                    this.model.uploadImageForListing(this.pictureFile, this.listing).subscribe(() => {
+                        this.redirector.redirectTo(Route.LISTING_VIEW, this.listing.Id);
+                    });
+                } else {
+                    this.responseMessageService.setSuccessMessageWithTimeout(this.responseMessages, "Listing updated!");
+                }
 
-                this.responseMessageService.setSuccessMessageWithTimeout(this.responseMessages, "Listing saved!");
             });
 
         } else {
@@ -112,8 +122,6 @@ export class ListingFormComponent implements ComponentCanDeactivate {
         }
     }
 
-    private url: any;
-    private pictureFile: any;
 
     fileEvent(event) {
         if (event.target.files && event.target.files[0]) {
@@ -123,7 +131,7 @@ export class ListingFormComponent implements ComponentCanDeactivate {
                 var reader = new FileReader();
 
                 reader.onload = (event: any) => {
-                    this.url = event.target.result;
+                    this.imageUrl = event.target.result;
                 }
 
                 reader.readAsDataURL(event.target.files[0]);
@@ -145,6 +153,10 @@ export class ListingFormComponent implements ComponentCanDeactivate {
 
     private getSafeImageUrl() {
         return this.sanitizer.bypassSecurityTrustUrl(this.listing.ImgUrl);
+    }
+
+    private disableFormFields() {
+        this.form.get("title").disable();
     }
 
 

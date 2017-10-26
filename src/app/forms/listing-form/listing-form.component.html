@@ -20,16 +20,17 @@
         </mat-form-field>
         <!-- <control-messages [control]="form.get('description')" class="form-member"></control-messages> -->
 
-        <!-- Amount input -->
-        <mat-form-field class="form-member">
-            <input matInput formControlName="amount" mdInput placeholder="Amount" [(ngModel)]="listing.Amount" pattern="[0-9]*" />
-        </mat-form-field>
-        <!-- <control-messages [control]="form.get('description')" class="form-member"></control-messages> -->
-
         <!-- Ending datetime picker -->
         <div class="form-member">
             <h5 class="form-control-header">End Time</h5>
-            <p-calendar formControlName="enddate" [(ngModel)]="listing.EndTime" [inline]="true" showTime="true" hourFormat="24" (onSelect)="onDateChange($event)"></p-calendar>
+            <p-calendar formControlName="enddate" 
+                [(ngModel)]="listing.EndTime" 
+                [inline]="true" 
+                showTime="true" 
+                hourFormat="24" 
+                dateFormat="yy.mm.dd"
+                (onSelect)="onDateChange($event)">
+            </p-calendar>
         </div>
 
         <!-- Picture Upload -->
@@ -37,7 +38,7 @@
             <h5 class="form-control-header">Picture</h5>
             <input class="picture-upload-input" type="file" (change)="fileEvent($event)" accept=".png,.gif,.jpeg,.jpg" />
 
-            <img [src]="sanitizer.bypassSecurityTrustResourceUrl(url)" class="image-preview">
+            <img [src]="sanitizer.bypassSecurityTrustResourceUrl(imageUrl)" class="image-preview">
         </div>
 
         <!-- Save button -->

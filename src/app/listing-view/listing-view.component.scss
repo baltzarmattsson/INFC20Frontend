@@ -14,11 +14,12 @@
     background-color: white;
     box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(0,0,0,.2);
     cursor: pointer;
+    max-width: 20%;
 }
 
 .listing-entry.tile {
     flex: 1 0 100%;
-    
+    max-width: 100%;
 }
 
 .image-holder {

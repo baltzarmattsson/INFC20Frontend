@@ -3,7 +3,10 @@
 
     <button (click)="auth.logout()">Temp Logout</button>
 
-    <listing-view [listings]="myListings"></listing-view>
+    <listing-view 
+        [listings]="myListings"
+        [showTileView]="true">
+    </listing-view>
 </div>
 
 <div *ngIf="!auth.isAuthenticated()">

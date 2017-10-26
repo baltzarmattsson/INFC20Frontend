@@ -32,15 +32,18 @@ export class RestDataSource {
         return result;
     }
 
-    getBidsByEmail(email: string): Observable<Bid[]> {
+    // getBidsByEmail(email: string): Observable<Bid[]> {
 
-        let result: Observable<Bid[]> = this.sendRequest(RequestMethod.Get,
-            `${this.url}/Bid/GetTempBids`, null);
-        return result;
-    }
+    //     // let result: Observable<Bid[]> = this.sendRequest(RequestMethod.Get,
+    //     //     `${this.url}/Bid/GetTempBids`, null);
+    //     // return result;
+    // }
 
     getListingsByEmail(email: string): Observable<Listing[]> {
-        return this.getListings();
+        let result: Observable<Listing[]> = this.sendRequest(RequestMethod.Post, 
+            `${this.url}/Listing/GetListingsByEmail`, email);
+
+        return result;
     }
 
 

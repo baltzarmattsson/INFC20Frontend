@@ -32,9 +32,9 @@ export class ProfileComponent {
     private initListings() {
 
         if (this.auth.isAuthenticated()) {
-            // this.model.getListingsByEmail(this.auth.getUserEmail()).subscribe((myListings: Listing[]) => {
-            //     this.myListings = myListings.filter(listing => listing.UserEmail == this.auth.getUserEmail());
-            // });
+            this.model.getListingsByEmail(this.auth.getUserEmail()).subscribe((myListings: Listing[]) => {
+                this.myListings = myListings;
+            });
         }
     }
 

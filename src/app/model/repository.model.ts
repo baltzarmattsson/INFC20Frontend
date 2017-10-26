@@ -19,9 +19,9 @@ export class Model {
         return this.dataSource.getListings();
     }
 
-    getBidsByEmail(email: string): Observable<Bid[]> {
-        return this.dataSource.getBidsByEmail(email);
-    }
+    // getBidsByEmail(email: string): Observable<Bid[]> {
+    //     return this.dataSource.getBidsByEmail(email);
+    // }
 
     getListingsByEmail(email: string): Observable<Listing[]> {
         return this.dataSource.getListingsByEmail(email);

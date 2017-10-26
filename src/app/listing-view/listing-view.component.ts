@@ -11,8 +11,6 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class ListingViewComponent {
 
-    private sanitizedImageUrlForListingId: { [listingId: number]: string } = [];
-
     @Input()
     listings: Listing[] = [];
 
@@ -33,23 +31,4 @@ export class ListingViewComponent {
             this.listingClickNotifier.onEditListingClick(listing);
         }
     }
-
-    ngOnChanges(changes) {        
-        if (changes && changes.listings && changes.listings.currentValue) {
-
-            let listings = [];
-            (<any>Object).assign(listings, changes.listings.currentValue);
-            console.log("LSSLSL", listings, changes.listings.currentValue);
-            
-
-            listings.forEach(listing => {
-                this.sanitizer.bypassSecurityTrustResourceUrl(listing.ImgUrl);
-                this.sanitizer.bypassSecurityTrustStyle(listing.ImgUrl);
-                this.sanitizer.bypassSecurityTrustUrl(listing.ImgUrl);
-                this.sanitizedImageUrlForListingId[listing.Id] = listing.ImgUrl;
-            });
-        }
-    }
-
-
 }

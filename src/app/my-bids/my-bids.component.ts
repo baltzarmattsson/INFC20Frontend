@@ -19,11 +19,11 @@ export class MyBidsComponent {
 
     ngOnInit() {
         if (this.auth.isAuthenticated()) {
-            this.model.getBidsByEmail(this.auth.getUserEmail()).subscribe((bids: Bid[]) => {
-                console.log(bids, this.auth.getUserEmail());
+            // this.model.getBidsByEmail(this.auth.getUserEmail()).subscribe((bids: Bid[]) => {
+            //     console.log(bids, this.auth.getUserEmail());
 
-                this.myBids = bids.filter(bid => bid.Email == this.auth.getUserEmail());
-            });
+            //     this.myBids = bids.filter(bid => bid.Email == this.auth.getUserEmail());
+            // });
         }
     }
 
