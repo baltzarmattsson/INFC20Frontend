@@ -53,7 +53,7 @@ export class RestDataSource {
     // LISTING
     getListing(listingId: number): Observable<Listing> {
         let result: Observable<Listing> = this.sendRequest(RequestMethod.Get,
-            `${this.url}/Listing/${listingId}`);
+            `${this.url}/Listing/Get/${listingId}`);
         return result;
     }
 

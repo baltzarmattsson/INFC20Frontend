@@ -4,6 +4,7 @@ export class User {
         public FirstName?: string,
         public LastName?: string,
         public Address?: string,
-        public Password?: string) { }
+        public Password?: string,
+        public NbrOfBids?: number) { }
 
 }

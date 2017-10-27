@@ -38,7 +38,7 @@ export class ProfileComponent implements ComponentCanDeactivate {
             "email": ["", Validators.required],
             "firstname": ["", Validators.required],
             "lastname": ["", Validators.required],
-            "address": ["", ],
+            "address": ["",],
             "password": ["", Validators.required],
         })
 
@@ -57,14 +57,15 @@ export class ProfileComponent implements ComponentCanDeactivate {
             this.model.getUser(this.auth.getUserEmail()).subscribe((user: User) => {
                 if (user) {
                     (<any>Object).assign(this.user, user);
-                (<any>Object).assign(this.originalUser, this.user);
+                    (<any>Object).assign(this.originalUser, this.user);
+
+                    this.model.getListingsByEmail(this.auth.getUserEmail()).subscribe((myListings: Listing[]) => {
+                        this.myListings = myListings;
+                    });
                 }
             })
 
 
-            this.model.getListingsByEmail(this.auth.getUserEmail()).subscribe((myListings: Listing[]) => {
-                this.myListings = myListings;
-            });
         }
     }
 

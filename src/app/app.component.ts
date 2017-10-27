@@ -26,6 +26,11 @@ export class AppComponent {
     ) {}
 
     ngOnInit() {
+
+        this.responseMessageService.responseMessageSubject.subscribe((message) => {
+            this.responseMessageService.setSuccessMessageWithTimeout(this.messages, message);
+        })
+
         this.errorHandler.onErrorSubject.subscribe((message: string) => {
             this.responseMessageService.setErrorMessageWithTimeout(this.messages, message);
         });

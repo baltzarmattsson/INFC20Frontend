@@ -8,6 +8,7 @@ import { RedirectorService, Route } from "../redirector.service";
 import { AuthService } from "../auth/auth.service";
 
 import { ComponentCanDeactivate } from "../forms/form-utils/pending-changes.guard";
+import { ResponseMessageService } from "../response-message/response-message.service";
 
 @Component({
     moduleId: module.id.toString(),
@@ -27,7 +28,8 @@ export class DetailedListingComponent implements ComponentCanDeactivate {
         private model: Model,
         private activeRoute: ActivatedRoute,
         private redirector: RedirectorService,
-        private auth: AuthService
+        private auth: AuthService,
+        public responseMessageService: ResponseMessageService
     ) {}
 
     ngOnInit() {
@@ -35,8 +37,9 @@ export class DetailedListingComponent implements ComponentCanDeactivate {
         this.activeRoute.params.subscribe((params: Params) => {
             this.listingId = params["listingid"];
             this.updateListing();
-            
         });
+
+
     }
 
     canDeactivate(): boolean {
@@ -65,6 +68,7 @@ export class DetailedListingComponent implements ComponentCanDeactivate {
             this.model.saveBid(bid, false).subscribe(() => {
                 this.updateListing();
                 this.originalValueInBiddingInput = this.valueInBiddingInput;
+                this.responseMessageService.responseMessageSubject.next("Bid added!");
             });
 
             
