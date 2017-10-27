@@ -23,6 +23,8 @@ export class ListingFormComponent implements ComponentCanDeactivate {
 
     private responseMessages: Message[] = [];
 
+    minDateValue = new Date();
+
     private listingId: any;
     private listing: Listing = new Listing();
     private originalListing: Listing = new Listing();
