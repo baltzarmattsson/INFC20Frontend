@@ -46,3 +46,14 @@
 .description-holder {
     flex: 1 0 50%;
 }
+
+.bids-table {
+    display: table;
+    box-shadow: 0 0 24px 0 rgba(0,0,0,.4);
+    border-radius: 0.2em;
+    width: 100%;
+}
+
+.bids-table thead {
+    font-weight: bold;
+}

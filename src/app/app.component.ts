@@ -34,6 +34,10 @@ export class AppComponent {
         this.errorHandler.onErrorSubject.subscribe((message: string) => {
             this.responseMessageService.setErrorMessageWithTimeout(this.messages, message);
         });
+
+        this.responseMessageService.responseErrorMessageSubject.subscribe(error => {
+            this.responseMessageService.setErrorMessageWithTimeout(this.messages, error);
+        })
     }
 
  }

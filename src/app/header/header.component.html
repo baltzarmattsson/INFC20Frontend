@@ -7,7 +7,7 @@
 
         <div class="search-holder">
             <mat-form-field class="search-input">
-                <input matInput placeholder="Search">
+                <input matInput placeholder="Search" [(ngModel)]="filterString" (ngModelChange)="onFilterChange()">
             </mat-form-field>
             <button mat-fab color="info">
                 <i class="fa fa-search search-icon"></i>    
@@ -16,12 +16,6 @@
 
         <!-- Navigation Icons -->
         <div class="nav-icons">
-
-            <!-- My bids -->
-           <div class="nav-icon-holder clickable" (click)="redirectToMyBids()">
-                <i class="material-icons md-48">attach_money</i>
-                <span>My Bids</span>
-           </div>
 
             <!-- Publish listing -->
            <div class="nav-icon-holder clickable" (click)="redirectToPublishListing()">

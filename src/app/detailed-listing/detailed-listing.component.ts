@@ -73,8 +73,7 @@ export class DetailedListingComponent implements ComponentCanDeactivate {
 
             
         } else {
-            // TODO
-            console.log("not valid input");
+            this.responseMessageService.responseErrorMessageSubject.next("Bid input not valid, only numeric values allowed");
         }
         
     }

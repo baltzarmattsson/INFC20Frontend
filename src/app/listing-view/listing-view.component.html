@@ -1,5 +1,5 @@
 <div class="listing-holder">
-    <div *ngFor="let listing of listings" class="listing-entry" [class.tile]="showTileView">
+    <div *ngFor="let listing of listings | filter:filterableAttributes:filterString" class="listing-entry" [class.tile]="showTileView">
         <div (click)="onListingClick(listing)">
             <div class="image-holder" [class.tile]="showTileView">
                 <a>

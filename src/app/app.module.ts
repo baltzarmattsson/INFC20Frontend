@@ -43,6 +43,9 @@ import { ListingClickNotifierService } from "./listing-view/listing-click-notifi
 import { ResponseMessageService } from "./response-message/response-message.service";
 import { ConfirmModalService } from "./forms/form-utils/confirm-modal.service";
 import { PendingChangesGuard } from "./forms/form-utils/pending-changes.guard";
+import { HeaderService } from "./header/header.service";
+
+import { FilterPipe } from "./listing-view/filter.pipe";
 
 import "../styles/reset.css";
 import "../styles/styles.scss";
@@ -69,7 +72,8 @@ const APP_PROVIDERS = [
     AuthComponent,
     SignUpComponent,
     ListingViewComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    FilterPipe
   ],
 
   imports: [
@@ -101,7 +105,8 @@ const APP_PROVIDERS = [
     ListingClickNotifierService,
     ResponseMessageService,
     ConfirmModalService,
-    PendingChangesGuard
+    PendingChangesGuard,
+    HeaderService
   ],
 
   exports: [

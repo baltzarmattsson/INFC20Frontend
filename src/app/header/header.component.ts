@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatInputModule } from "@angular/material";
 
 import { RedirectorService, Route } from "../redirector.service";
+import { HeaderService } from "./header.service";
 
 @Component({
     moduleId: module.id.toString(),
@@ -11,7 +12,10 @@ import { RedirectorService, Route } from "../redirector.service";
 })
 export class HeaderComponent {
 
-    constructor(private redirector: RedirectorService) {}
+    filterString = "";
+
+    constructor(private redirector: RedirectorService,
+        private headerService: HeaderService) {}
 
     redirectToHome() {
         this.redirector.redirectTo(Route.HOME);
@@ -27,6 +31,10 @@ export class HeaderComponent {
 
     redirectToProfile() {
         this.redirector.redirectTo(Route.PROFILE);
+    }
+
+    onFilterChange() {
+        this.headerService.filterStringSubject.next(this.filterString);
     }
 
 }

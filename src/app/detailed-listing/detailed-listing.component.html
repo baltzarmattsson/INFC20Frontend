@@ -27,7 +27,6 @@
                 <tr>
                     <th>Bidder</th>
                     <th>Amount</th>
-                    <th>Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,7 +38,6 @@
                 <tr *ngFor="let bid of listing.Bids">
                     <td>{{bid.Email}}</td>
                     <td>{{bid.Amount}} kr</td>
-                    <td>{{bid.Time_Stamp | date}}</td>
                 </tr>
             </tbody>
         </table>
